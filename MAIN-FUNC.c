@@ -22,11 +22,11 @@ void playGround(int gameSize)
         while(r1!=-1)
         {
             //Printing The Grid
+            printf("\n");
             if (gameSize==2)printf("  1   2   3 \n");
             if (gameSize==3)printf("  1   2   3   4\n");
             if (gameSize==4)printf("  1   2   3   4   5\n");
             if (gameSize==5)printf("  1   2   3   4   5   6\n");
-
 
             int k=1; //to print the indecies
             for(int i=0;i<gameSize*2 + 1;i++)
@@ -46,6 +46,7 @@ void playGround(int gameSize)
                     }
                 printf("\n");
             }
+            printf("\n");
 
             //Taking the coordinates of the dots
 
