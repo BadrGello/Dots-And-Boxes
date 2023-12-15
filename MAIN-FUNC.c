@@ -17,25 +17,61 @@ void playGround(int gameSize)
     void activeplayGround(char Arr[gameSize*2 + 1][gameSize*2 + 1], int gameSize)
     {
         int r1,c1,r2,c2;
+        int playerTurn=1; //1 or 2 or 0(BOT)[Acts as player 2]
         while(r1!=-1)
         {
+            //Printing The Grid
             for(int i=0;i<gameSize*2 + 1;i++)
             {
                 for(int j=0;j<gameSize*2 + 1;j++)
                     {
-                        printf("%c ",Arr[i][j]);
+                        if ((Arr[i][j]==' ')||(Arr[i][j]=='.')) printf("%c ",Arr[i][j]);
+                        else if(Arr[i][j]=='2') printf("\033[0;34m|\033[0m");
+                        else if(Arr[i][j]=='3') printf("\033[0;34m-\033[0m");
+                        else if(Arr[i][j]=='4') printf("\033[0;31m|\033[0m");
+                        else if(Arr[i][j]=='5') printf("\033[0;31m-\033[0m");
                     }
                 printf("\n");
             }
 
-            scanf("%d %d %d %d",&r1,&c1,&r2,&c2);
-            if (r1==-1) break;
-            if ((c2==c1)&&(abs(r1-r2)==1)) Arr[r1+r2-2][c1+c2-2]='|';
-            else if ((r2==r1)&&(abs(c1-c2)==1)) Arr[r1+r2-2][c1+c2-2]='-';
-            else{
-                printf("Invalid Value, Please Enter Again\n");
-                continue;
+            //Taking the coordinates of the dots
+
+            if(playerTurn==1)
+            {
+                scanf("%d %d %d %d",&r1,&c1,&r2,&c2);
+                if (r1==-1) break;
+                if ((c2==c1)&&(abs(r1-r2)==1)) Arr[r1+r2-2][c1+c2-2]='2'; // |
+                else if ((r2==r1)&&(abs(c1-c2)==1)) Arr[r1+r2-2][c1+c2-2]='3'; // -
+                else
+                {
+                    printf("Invalid Value, Please Enter Again\n");
+                    continue;
+                }
+                //Some else and if's to handle that if the current player completed a box the playerTurn is 1 again
+                //if ()playerTurn==1;
+                //else playerTurn==2;
+                playerTurn==2;
             }
+
+            else if(playerTurn==2)
+            {
+                scanf("%d %d %d %d",&r1,&c1,&r2,&c2);
+                if (r1==-1) break;
+                if ((c2==c1)&&(abs(r1-r2)==1)) Arr[r1+r2-2][c1+c2-2]='4';
+                else if ((r2==r1)&&(abs(c1-c2)==1)) Arr[r1+r2-2][c1+c2-2]='5';
+                else
+                {
+                    printf("Invalid Value, Please Enter Again\n");
+                    continue;
+                }
+            }
+
+            else if(playerTurn==0)
+            {
+
+            }
+
+
 
 
         }
