@@ -40,9 +40,9 @@ void playGround(int gameSize)
                     {
                         if ((Arr[i][j]==' ')||(Arr[i][j]=='.')) printf("%c ",Arr[i][j]);
                         else if(Arr[i][j]=='2') printf("  \033[0;34m|\033[0m ");
-                        else if(Arr[i][j]=='3') printf("\033[0;34m-\033[0m ");
+                        else if(Arr[i][j]=='3') printf("\033[0;34m_\033[0m ");
                         else if(Arr[i][j]=='4') printf("  \033[0;31m|\033[0m ");
-                        else if(Arr[i][j]=='5') printf("\033[0;31m-\033[0m ");
+                        else if(Arr[i][j]=='5') printf("\033[0;31m_\033[0m ");
                     }
                 printf("\n");
             }
