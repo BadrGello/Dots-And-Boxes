@@ -7,7 +7,7 @@ int i,j;
 char Arr[2*gameSize+1][2*gameSize+1];
 for (i=0;i<=2*gameSize;i++){
 for (j=0;j<=2*gameSize;j++){
-if(i%2==0&&j%2==0) Arr[i][j]='.';
+if(i%2==0&&j%2==0) Arr[i][j]='.'; 
 else Arr[i][j]=' ';
 }
 }
