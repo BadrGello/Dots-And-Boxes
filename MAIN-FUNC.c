@@ -217,8 +217,12 @@ else Arr[i][j]=' ';
 }
 
 
+
 int main()
 {
-    playGround(3);
-
+    int gameSize;
+    printf("Enter The Game Size (1 Digit) From 2 up to 9\n");
+    scanf("%d",&gameSize);
+    system("cls");
+    playGround(gameSize-1);
 }
