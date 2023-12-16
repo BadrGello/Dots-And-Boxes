@@ -17,10 +17,14 @@ void playGround(int gameSize)
 
     void activeplayGround(char Arr[gameSize*2 + 1][gameSize*2 + 1], int gameSize)
     {
-        int r1,c1,r2,c2;
+        int r1,c1,r2,c2,x=0,y=0;
         int playerTurn=1; //1 or 2 or 0(BOT)[Acts as player 2]
         while(r1!=-1)
         {
+            //printing the score
+            printf("score of pleyer1:%d\n",x);
+            printf("score of pleyer2:%d\n",y);
+            int l=x,t=y;
             //Printing The Grid
             printf("\n");
             if (gameSize==2)printf("  1   2   3 \n");
@@ -36,13 +40,16 @@ void playGround(int gameSize)
                     printf("%d ",k);
                     k++;
                 }
+                else printf("  ");
                 for(int j=0;j<gameSize*2 + 1;j++)
                     {
                         if ((Arr[i][j]==' ')||(Arr[i][j]=='.')) printf("%c ",Arr[i][j]);
-                        else if(Arr[i][j]=='2') printf("  \033[0;34m|\033[0m ");
+                        else if(Arr[i][j]=='2') printf("\033[0;34m|\033[0m ");
                         else if(Arr[i][j]=='3') printf("\033[0;34m_\033[0m ");
-                        else if(Arr[i][j]=='4') printf("  \033[0;31m|\033[0m ");
+                        else if(Arr[i][j]=='6') printf("\033[0;34m#\033[0m ");
+                        else if(Arr[i][j]=='4') printf("\033[0;31m|\033[0m ");
                         else if(Arr[i][j]=='5') printf("\033[0;31m_\033[0m ");
+                        else if(Arr[i][j]=='7') printf("\033[0;31m#\033[0m ");
                     }
                 printf("\n");
             }
@@ -54,8 +61,30 @@ void playGround(int gameSize)
             {
                 scanf("%d %d %d %d",&r1,&c1,&r2,&c2);
                 if (r1==-1) break;
-                if ((c2==c1)&&(abs(r1-r2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' ')) Arr[r1+r2-2][c1+c2-2]='2'; // |
-                else if ((r2==r1)&&(abs(c1-c2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' ')) Arr[r1+r2-2][c1+c2-2]='3'; // -
+                if ((c2==c1)&&(abs(r1-r2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' ')){
+                    Arr[r1+r2-2][c1+c2-2]='2'; // |
+                    if(Arr[r1+r2-2][c1+c2-4]!=' '&& c1!=1 && Arr[r1+r2-3][c1+c2-3]!=' ' && Arr[r1+r2-1][c1+c2-3]!=' ') {
+                    Arr[r1+r2-2][c1+c2-3]='6'; // #
+                    x++;
+                    }
+                    if (Arr[r1+r2-2][c1+c2]!=' '&& c1!=gameSize&& Arr[r1+r2-3][c1+c2-1]!=' ' && Arr[r1+r2-1][c1+c2-1]!=' ') {
+                       Arr[r1+r2-2][c1+c2-1]='6'; // #
+                       x++;
+                    }
+                }
+                else if ((r2==r1)&&(abs(c1-c2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' ')){
+                     Arr[r1+r2-2][c1+c2-2]='3'; // -
+
+                     if(Arr[r1+r2][c1+c2-2]!=' ' && r1!=gameSize && Arr[r1+r2-1][c1+c2-1]!=' ' &&Arr[r1+r2-1][c1+c2-3]!=' '  ){
+                     Arr[r1+r2-1][c1+c2-2]='6';
+                     x++;
+                     }
+                     if(Arr[r1+r2-4][c1+c2-2]!=' ' && r1!=1 && Arr[r1+r2-3][c1+c2-1]!=' ' &&Arr[r1+r2-3][c1+c2-3]!=' '  ){
+                     Arr[r1+r2-3][c1+c2-2]='6';
+                     x++;
+                     }
+                }
+                if(x>l) continue;
                 else
                 {
                     printf("Invalid Value, Please Enter Again\n");
@@ -65,20 +94,44 @@ void playGround(int gameSize)
                 //if ()playerTurn=1;
                 //else playerTurn=2;
                 playerTurn=2;
+                system( "cls" );
             }
 
             else if(playerTurn==2)
             {
                 scanf("%d %d %d %d",&r1,&c1,&r2,&c2);
                 if (r1==-1) break;
-                if ((c2==c1)&&(abs(r1-r2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' ')) Arr[r1+r2-2][c1+c2-2]='4';
-                else if ((r2==r1)&&(abs(c1-c2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' ')) Arr[r1+r2-2][c1+c2-2]='5';
+                if ((c2==c1)&&(abs(r1-r2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' ')) {
+                    Arr[r1+r2-2][c1+c2-2]='4';
+                    if(Arr[r1+r2-2][c1+c2-4]!=' '&& c1!=1 && Arr[r1+r2-3][c1+c2-3]!=' ' && Arr[r1+r2-1][c1+c2-3]!=' ') {
+                    Arr[r1+r2-2][c1+c2-3]='7'; // #
+                    y++;
+                    }
+                    if (Arr[r1+r2-2][c1+c2]!=' '&& c1!=gameSize && Arr[r1+r2-3][c1+c2-1]!=' ' && Arr[r1+r2-1][c1+c2-1]!=' ') {
+                       Arr[r1+r2-2][c1+c2-1]='7'; // #
+                       y++;
+                    }
+
+                }
+                else if ((r2==r1)&&(abs(c1-c2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' ')){
+                    Arr[r1+r2-2][c1+c2-2]='5';
+                    if(Arr[r1+r2][c1+c2-2]!=' ' && r1!=gameSize &&Arr[r1+r2-1][c1+c2-1]!=' ' &&Arr[r1+r2-1][c1+c2-3]!=' '  ){
+                     Arr[r1+r2-1][c1+c2-2]='7';
+                     y++;
+                     }
+                     if(Arr[r1+r2-4][c1+c2-2]!=' ' && r1!=1 && Arr[r1+r2-3][c1+c2-1]!=' ' &&Arr[r1+r2-3][c1+c2-3]!=' '  ){
+                     Arr[r1+r2-3][c1+c2-2]='7';
+                     y++;
+                     }
+                }
+                 if(y>t) continue;
                 else
                 {
                     printf("Invalid Value, Please Enter Again\n");
                     continue;
                 }
                 playerTurn=1;
+                system( "cls" );
             }
 
             else if(playerTurn==0)
