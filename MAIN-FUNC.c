@@ -210,7 +210,6 @@ void playGround(int gameSize)
     activeplayGround(Arr,gameSize);
 
 }
-
 int main()
 {
     int gameSize;
