@@ -3,7 +3,7 @@
 #include <stdlib.h>
 void playGround(int gameSize)
 {
-int i,j;
+int i,j,player1Moves=0,player2Moves=0;
 char Arr[2*gameSize+1][2*gameSize+1],a[256],b[4];
 for (i=0;i<=2*gameSize;i++){
 for (j=0;j<=2*gameSize;j++){
@@ -26,8 +26,10 @@ else Arr[i][j]=' ';
         while(r1!=-1&&z>0)
         {
             //printing the score
-            printf(" \033[0;34m%s's score :%d\033[0m \n",player1,x);
+            printf(" \033[0;34m%s's score :%d\033[0m      ",player1,x);
             printf(" \033[0;31m%s's score :%d\033[0m \n",player2,y);
+            printf(" \033[0;34m%s played :%d moves\033[0m      ",player1,player1Moves);
+            printf(" \033[0;31m%s played :%d moves\033[0m \n",player2,player2Moves);
             printf("remaining moves:%d\n",z);
             int l=x,t=y;
             //Printing The Grid
@@ -71,7 +73,8 @@ else Arr[i][j]=' ';
 
                 r1=b[0]-'0';  c1=b[1]-'0';  r2=b[2]-'0';  c2=b[3]-'0';
                 if (r1==-1) break;
-                if ((c2==c1)&&(abs(r1-r2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' '&&r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)){
+                if ((c2==c1)&&(abs(r1-r2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' '&& r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)){
+                  player1Moves++;
                     Arr[r1+r2-2][c1+c2-2]='2'; // |
                     if(c1!=1){
                     if(Arr[r1+r2-2][c1+c2-4]!=' ' && Arr[r1+r2-3][c1+c2-3]!=' ' && Arr[r1+r2-1][c1+c2-3]!=' ') {
@@ -87,6 +90,7 @@ else Arr[i][j]=' ';
                 }
                 }
                 else if ((r2==r1)&&(abs(c1-c2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' '&&r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)){
+                     player1Moves++;
                      Arr[r1+r2-2][c1+c2-2]='3'; // -
                      if(r1!=gameSize+1){
                      if(Arr[r1+r2][c1+c2-2]!=' '  && Arr[r1+r2-1][c1+c2-1]!=' ' &&Arr[r1+r2-1][c1+c2-3]!=' '  ){
@@ -133,6 +137,7 @@ else Arr[i][j]=' ';
                 r1=b[0]-'0';  c1=b[1]-'0';  r2=b[2]-'0';  c2=b[3]-'0';
                 if (r1==-1) break;
                 if ((c2==c1)&&(abs(r1-r2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' '&&r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)) {
+                   player2Moves++;
                     Arr[r1+r2-2][c1+c2-2]='4';
                     if( c1!=1 ){
                     if(Arr[r1+r2-2][c1+c2-4]!=' '&& Arr[r1+r2-3][c1+c2-3]!=' ' && Arr[r1+r2-1][c1+c2-3]!=' ') {
@@ -148,6 +153,7 @@ else Arr[i][j]=' ';
                     }
                 }
                 else if ((r2==r1)&&(abs(c1-c2)==1)&&(Arr[r1+r2-2][c1+c2-2]==' '&&r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)){
+                   player2Moves++;
                     Arr[r1+r2-2][c1+c2-2]='5';
                     if( r1!=gameSize+1 ){
                     if(Arr[r1+r2][c1+c2-2]!=' '&&Arr[r1+r2-1][c1+c2-1]!=' ' &&Arr[r1+r2-1][c1+c2-3]!=' '  ){
