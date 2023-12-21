@@ -26,7 +26,7 @@ else Arr[i][j]=' ';
         while(r1!=-1&&z>0)
         {
             //printing the score
-            printf(" \033[0;34m%s's score :%d\033[0m      ",player1,x);
+            printf(" \033[0;34m%s's score :%d\033[0m         ",player1,x);
             printf(" \033[0;31m%s's score :%d\033[0m \n",player2,y);
             printf(" \033[0;34m%s played :%d moves\033[0m      ",player1,player1Moves);
             printf(" \033[0;31m%s played :%d moves\033[0m \n",player2,player2Moves);
