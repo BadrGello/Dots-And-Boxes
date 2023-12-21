@@ -16,7 +16,7 @@ else Arr[i][j]=' ';
     void activeplayGround(char Arr[gameSize*2 + 1][gameSize*2 + 1], int gameSize)
     {
         char player1[256],player2[256];
-        int r1,c1,r2,c2,p1Score=0,p2Score=0,remMoves=2*gameSize*(gameSize+1);
+        int r1,c1,r2,c2,p1Score=0,p2Score=0,z=2*gameSize*(gameSize+1);
         int playerTurn=1; //1 or 2 or 0(BOT)[Acts as player 2]
         printf("\033[0;34mplayer1 enter your name:\033[0m ");
         scanf("%s",player1);
@@ -24,7 +24,7 @@ else Arr[i][j]=' ';
          printf("\033[0;31mplayer2 enter your name:\033[0m ");
          scanf("%s",player2);
          system("cls");
-        while(r1!=-1&&z>0)
+        while(r1!=-1&& z>0)
         {
             //printing the score
             printf(" \033[0;34m%s's score :%d\033[0m           ",player1,p1Score);
@@ -32,7 +32,7 @@ else Arr[i][j]=' ';
             printf(" \033[0;34m%s played :%d moves\033[0m      ",player1,player1Moves);
             printf(" \033[0;31m%s played :%d moves\033[0m \n",player2,player2Moves);
             printf("remaining moves:%d\n",z);
-            int l=x,t=y;
+            int l=p1Score,t=p2Score;
             //Printing The Grid
             printf("\n");
             if (gameSize==2)printf("  1   2   3 \n");
@@ -81,14 +81,14 @@ else Arr[i][j]=' ';
                     if(Arr[r1+r2-2][c1+c2-4]!=' ' && Arr[r1+r2-3][c1+c2-3]!=' ' && Arr[r1+r2-1][c1+c2-3]!=' ') {
                     Arr[r1+r2-2][c1+c2-3]='6'; // #
                     p1Score++;
-                    dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);                    
+                    dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
                     }
                     }
                     if(c1!=gameSize+1){
                     if (Arr[r1+r2-2][c1+c2]!=' '&& Arr[r1+r2-3][c1+c2-1]!=' ' && Arr[r1+r2-1][c1+c2-1]!=' ') {
                        Arr[r1+r2-2][c1+c2-1]='6'; // #
                        p1Score++;
-                       dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
+                       dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
                     }
                 }
                 }
@@ -99,14 +99,14 @@ else Arr[i][j]=' ';
                      if(Arr[r1+r2][c1+c2-2]!=' '  && Arr[r1+r2-1][c1+c2-1]!=' ' &&Arr[r1+r2-1][c1+c2-3]!=' '  ){
                      Arr[r1+r2-1][c1+c2-2]='6';
                      p1Score++;
-                     dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);                     
+                     dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
                      }
                      }
                      if(r1!=1){
                      if(Arr[r1+r2-4][c1+c2-2]!=' ' && Arr[r1+r2-3][c1+c2-1]!=' ' &&Arr[r1+r2-3][c1+c2-3]!=' '  ){
                      Arr[r1+r2-3][c1+c2-2]='6';
                      p1Score++;
-                     dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
+                     dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
                      }
                 }
                 }
@@ -116,7 +116,7 @@ else Arr[i][j]=' ';
                     printf("Invalid Value, Please Enter Again\n");
                     continue;
                 }
-                if(x>l) {
+                if(p1Score>l) {
                          system( "cls" );
                         z--;
                         continue;
@@ -148,14 +148,14 @@ else Arr[i][j]=' ';
                     if(Arr[r1+r2-2][c1+c2-4]!=' '&& Arr[r1+r2-3][c1+c2-3]!=' ' && Arr[r1+r2-1][c1+c2-3]!=' ') {
                     Arr[r1+r2-2][c1+c2-3]='7'; // #
                     p2Score++;
-                    dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
+                    dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
                     }
                     }
                     if(c1!=gameSize+1 ){
                     if (Arr[r1+r2-2][c1+c2]!=' '&&  Arr[r1+r2-3][c1+c2-1]!=' ' && Arr[r1+r2-1][c1+c2-1]!=' ') {
                        Arr[r1+r2-2][c1+c2-1]='7'; // #
                        p2Score++;
-                       dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
+                       dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
                     }
                     }
                 }
@@ -166,14 +166,14 @@ else Arr[i][j]=' ';
                     if(Arr[r1+r2][c1+c2-2]!=' '&&Arr[r1+r2-1][c1+c2-1]!=' ' &&Arr[r1+r2-1][c1+c2-3]!=' '  ){
                      Arr[r1+r2-1][c1+c2-2]='7';
                      p2Score++;
-                     dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
+                     dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
                      }
                     }
                     if(r1!=1 ){
                      if(Arr[r1+r2-4][c1+c2-2]!=' ' &&  Arr[r1+r2-3][c1+c2-1]!=' ' &&Arr[r1+r2-3][c1+c2-3]!=' '  ){
                      Arr[r1+r2-3][c1+c2-2]='7';
                      p2Score++;
-                     dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
+                     dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
                      }
                     }
                 }
@@ -184,7 +184,7 @@ else Arr[i][j]=' ';
 
                     continue;
                 }
-                if(y>t) {
+                if(p2Score>t) {
                         z--;
                         system( "cls" );
                         continue;
@@ -232,8 +232,8 @@ else Arr[i][j]=' ';
                 printf("\n");
             }
             printf("\n");
- if(x>y) printf("\033[0;34m%s wins\033[0m ",player1);
- else if(y>x) printf("\033[0;31m%s wins\033[0m ",player2);
+ if(p1Score>p2Score) printf("\033[0;34m%s wins\033[0m ",player1);
+ else if(p2Score>p1Score) printf("\033[0;31m%s wins\033[0m ",player2);
  else   printf("Draw");
     }
     //if (gameSize==2) activeplayGround(G2,gameSize);
