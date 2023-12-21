@@ -1,6 +1,7 @@
 //test
 #include <stdio.h>
 #include <stdlib.h>
+#include "dfs.h"
 void playGround(int gameSize)
 {
 int i,j,player1Moves=0,player2Moves=0;
@@ -80,12 +81,14 @@ else Arr[i][j]=' ';
                     if(Arr[r1+r2-2][c1+c2-4]!=' ' && Arr[r1+r2-3][c1+c2-3]!=' ' && Arr[r1+r2-1][c1+c2-3]!=' ') {
                     Arr[r1+r2-2][c1+c2-3]='6'; // #
                     p1Score++;
+                    dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);                    
                     }
                     }
                     if(c1!=gameSize+1){
                     if (Arr[r1+r2-2][c1+c2]!=' '&& Arr[r1+r2-3][c1+c2-1]!=' ' && Arr[r1+r2-1][c1+c2-1]!=' ') {
                        Arr[r1+r2-2][c1+c2-1]='6'; // #
                        p1Score++;
+                       dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
                     }
                 }
                 }
@@ -96,12 +99,14 @@ else Arr[i][j]=' ';
                      if(Arr[r1+r2][c1+c2-2]!=' '  && Arr[r1+r2-1][c1+c2-1]!=' ' &&Arr[r1+r2-1][c1+c2-3]!=' '  ){
                      Arr[r1+r2-1][c1+c2-2]='6';
                      p1Score++;
+                     dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);                     
                      }
                      }
                      if(r1!=1){
                      if(Arr[r1+r2-4][c1+c2-2]!=' ' && Arr[r1+r2-3][c1+c2-1]!=' ' &&Arr[r1+r2-3][c1+c2-3]!=' '  ){
                      Arr[r1+r2-3][c1+c2-2]='6';
                      p1Score++;
+                     dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
                      }
                 }
                 }
@@ -143,12 +148,14 @@ else Arr[i][j]=' ';
                     if(Arr[r1+r2-2][c1+c2-4]!=' '&& Arr[r1+r2-3][c1+c2-3]!=' ' && Arr[r1+r2-1][c1+c2-3]!=' ') {
                     Arr[r1+r2-2][c1+c2-3]='7'; // #
                     p2Score++;
+                    dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
                     }
                     }
                     if(c1!=gameSize+1 ){
                     if (Arr[r1+r2-2][c1+c2]!=' '&&  Arr[r1+r2-3][c1+c2-1]!=' ' && Arr[r1+r2-1][c1+c2-1]!=' ') {
                        Arr[r1+r2-2][c1+c2-1]='7'; // #
                        p2Score++;
+                       dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
                     }
                     }
                 }
@@ -159,12 +166,14 @@ else Arr[i][j]=' ';
                     if(Arr[r1+r2][c1+c2-2]!=' '&&Arr[r1+r2-1][c1+c2-1]!=' ' &&Arr[r1+r2-1][c1+c2-3]!=' '  ){
                      Arr[r1+r2-1][c1+c2-2]='7';
                      p2Score++;
+                     dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
                      }
                     }
                     if(r1!=1 ){
                      if(Arr[r1+r2-4][c1+c2-2]!=' ' &&  Arr[r1+r2-3][c1+c2-1]!=' ' &&Arr[r1+r2-3][c1+c2-3]!=' '  ){
                      Arr[r1+r2-3][c1+c2-2]='7';
                      p2Score++;
+                     dfs(Arr[][],gameSize,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
                      }
                     }
                 }
