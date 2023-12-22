@@ -4,7 +4,7 @@ void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int* r1,int* c1,int* 
             if(arr[*r1+*r2][*c1+*c2-2]==' '&&arr[*r1+*r2-1][*c1+*c2-1]!=' '&&arr[*r1+*r2-1][*c1+*c2-3]!=' '){
              *z--;
              *moves++;
-             *score++;
+             (*score)++;
              arr[*r1+*r2][*c1+*c2-2]=arr[*r1+*r2-2][*c1+*c2-2];
              arr[*r1+*r2-1][*c1+*c2-2]=arr[*r1+*r2-3][*c1+*c2-2];
              *r1++;
