@@ -1,4 +1,4 @@
-void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int *r1,int *c1,int *r2,int *c2,int *z,int *moves,int *score){
+void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int* r1,int* c1,int* r2,int* c2,int* z,int* moves,int* score){
     if(*r1==*r2){
         if(*r1!=gameSize+1 && arr[*r1+*r2-3][*c1+*c2-2]!=' '){
             if(arr[*r1+*r2][*c1+*c2-2]==' '&&arr[*r1+*r2-1][*c1+*c2-1]!=' '&&arr[*r1+*r2-1][*c1+*c2-3]!=' '){

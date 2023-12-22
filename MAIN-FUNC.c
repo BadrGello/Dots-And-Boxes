@@ -14,7 +14,7 @@ else Arr[i][j]=' ';
 }
 
     void activeplayGround(char Arr[gameSize*2 + 1][gameSize*2 + 1], int gameSize)
-    {
+     {
         char player1[256],player2[256];
         int r1,c1,r2,c2,p1Score=0,p2Score=0,z=2*gameSize*(gameSize+1);
         int playerTurn=1; //1 or 2 or 0(BOT)[Acts as player 2]
