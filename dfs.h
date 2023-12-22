@@ -15,7 +15,7 @@ void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int* r1,int* c1,int* 
                  (*z)--;
              (*moves)++;
              (*score)++;
-             arr[*r1+*r2-1][*c1+*c2-1]=arr[*r1+*r2-2][*c1+*c2-2];
+             arr[*r1+*r2-1][*c1+*c2-1]=arr[*r1+*r2-2][*c1+*c2-2]-1;
              arr[*r1+*r2-1][*c1+*c2-2]=arr[*r1+*r2-3][*c1+*c2-2];
              (*r2)++;
              if(*c1>*c2) *c2=*c1;
@@ -26,7 +26,7 @@ void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int* r1,int* c1,int* 
                  (*z)--;
              (*moves)++;
              (*score)++;
-             arr[*r1+*r2-1][*c1+*c2-3]=arr[*r1+*r2-2][*c1+*c2-2];
+             arr[*r1+*r2-1][*c1+*c2-3]=arr[*r1+*r2-2][*c1+*c2-2]-1;
              arr[*r1+*r2-1][*c1+*c2-2]=arr[*r1+*r2-3][*c1+*c2-2];
              (*r2)++;
              if(*c1>*c2) *c1=*c2;
@@ -49,7 +49,7 @@ void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int* r1,int* c1,int* 
                  (*z)--;
              (*moves)++;
              (*score)++;
-             arr[*r1+*r2-3][*c1+*c2-1]=arr[*r1+*r2-2][*c1+*c2-2];
+             arr[*r1+*r2-3][*c1+*c2-1]=arr[*r1+*r2-2][*c1+*c2-2]-1;
              arr[*r1+*r2-3][*c1+*c2-2]=arr[*r1+*r2-3][*c1+*c2-2];
              (*r1)--;
              if(*c1>*c2) *c2=*c1;
@@ -60,7 +60,7 @@ void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int* r1,int* c1,int* 
                  (*z)--;
              (*moves)++;
              (*score)++;
-             arr[*r1+*r2-3][*c1+*c2-3]=arr[*r1+*r2-2][*c1+*c2-2];
+             arr[*r1+*r2-3][*c1+*c2-3]=arr[*r1+*r2-2][*c1+*c2-2]-1;
              arr[*r1+*r2-3][*c1+*c2-2]=arr[*r1+*r2-3][*c1+*c2-2];
              (*r1)--;
              if(*c1>*c2) *c1=*c2;
@@ -85,7 +85,7 @@ void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int* r1,int* c1,int* 
                  (*z)--;
              (*moves)++;
              (*score)++;
-             arr[*r1+*r2-3][*c1+*c2-3]=arr[*r1+*r2-2][*c1+*c2-2];
+             arr[*r1+*r2-3][*c1+*c2-3]=arr[*r1+*r2-2][*c1+*c2-2]+1;
              arr[*r1+*r2-2][*c1+*c2-3]=arr[*r1+*r2-2][*c1+*c2-1];
              (*c1)--;
              if(*r1>*r2) *r1=*r2;
@@ -96,7 +96,7 @@ void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int* r1,int* c1,int* 
                  (*z)--;
              (*moves)++;
              (*score)++;
-             arr[*r1+*r2-1][*c1+*c2-3]=arr[*r1+*r2-2][*c1+*c2-2];
+             arr[*r1+*r2-1][*c1+*c2-3]=arr[*r1+*r2-2][*c1+*c2-2]+1;
              arr[*r1+*r2-2][*c1+*c2-3]=arr[*r1+*r2-2][*c1+*c2-1];
              (*c1)--;
              if(*r1>*r2) *r2=*r1;
@@ -119,7 +119,7 @@ void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int* r1,int* c1,int* 
                 ( *z)--;
              ( *moves)++;
              (*score)++;
-             arr[*r1+*r2-3][*c1+*c2-1]=arr[*r1+*r2-2][*c1+*c2-2];
+             arr[*r1+*r2-3][*c1+*c2-1]=arr[*r1+*r2-2][*c1+*c2-2]+1;
              arr[*r1+*r2-2][*c1+*c2-1]=arr[*r1+*r2-2][*c1+*c2-3];
              (*c1)--;
              if(*r1>*r2) *r2=*r1;
@@ -130,7 +130,7 @@ void dfs(int gameSize,char arr[gameSize*2+1][gameSize*2+1],int* r1,int* c1,int* 
                  (*z)--;
              (*moves)++;
              (*score)++;
-             arr[*r1+*r2-3][*c1+*c2-1]=arr[*r1+*r2-2][*c1+*c2-2];
+             arr[*r1+*r2-3][*c1+*c2-1]=arr[*r1+*r2-2][*c1+*c2-2]+1;
              arr[*r1+*r2-2][*c1+*c2-1]=arr[*r1+*r2-2][*c1+*c2-3];
              (*c1)--;
              if(*r1>*r2) *r1=*r2;
