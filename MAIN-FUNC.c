@@ -1,6 +1,7 @@
 //test
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "dfs.h"
 void playGround(int gameSize)
 {
@@ -24,8 +25,12 @@ else Arr[i][j]=' ';
          printf("\033[0;31mplayer2 enter your name:\033[0m ");
          scanf("%s",player2);
          system("cls");
+         clock_t begin = clock();
+         int time_spent=0,t=0;
         while(r1!=-1&& z>0)
         {
+            
+            printf("time spent %d:%d\n",t,time_spent);
             //printing the score
             printf(" \033[0;34m%s's score :%d\033[0m           ",player1,p1Score);
             printf(" \033[0;31m%s's score :%d\033[0m \n",player2,p2Score);
@@ -119,6 +124,10 @@ else Arr[i][j]=' ';
                 if(p1Score>l) {
                          system( "cls" );
                         z--;
+                        clock_t end = clock();
+                         time_spent = (int)(end - begin) / CLOCKS_PER_SEC;
+                        t=time_spent/60;
+                         if (t!=0) time_spent-=t*60;
                         continue;
 
                 }
@@ -128,6 +137,10 @@ else Arr[i][j]=' ';
                 //else playerTurn=2;
                 playerTurn=2;
                 z--;
+                clock_t end = clock();
+                 time_spent = (int)(end - begin) / CLOCKS_PER_SEC;
+                        t=time_spent/60;
+                         if (t!=0) time_spent-=t*60;
                  system( "cls" );
             }
 
@@ -186,12 +199,20 @@ else Arr[i][j]=' ';
                 }
                 if(p2Score>t) {
                         z--;
+                        clock_t end = clock();
+                         time_spent = (int)(end - begin) / CLOCKS_PER_SEC;
+                        t=time_spent/60;
+                         if (t!=0) time_spent-=t*60;
                         system( "cls" );
                         continue;
 
                 }
                 playerTurn=1;
                 z--;
+                clock_t end = clock();
+                 time_spent = (int)(end - begin) / CLOCKS_PER_SEC;
+                        t=time_spent/60;
+                         if (t!=0) time_spent-=t*60;
                             system( "cls" );
             }
 
