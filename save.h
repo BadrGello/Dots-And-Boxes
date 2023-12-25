@@ -11,15 +11,15 @@ void saveTheGame(int gameSize,char arr[2*gameSize+1][2*gameSize+1],int playerTur
     }
      printf("choose saveslot from 1 to 3\n");
     scanf("%c",&saveSlot);
-    } while ( saveSlot-'0'>3 ||saveSlot-'0'<0);
+    } while ( saveSlot-'0'>3 ||saveSlot-'0'<=0);
     if(saveSlot=='1'){
-        fb=fopen("saveSlot1.bin","w+");
+        fb=fopen("saveSlot1.bin","rb+");
     }
     else if(saveSlot=='2'){
-         fb=fopen("saveSlot2.bin","w+");
+         fb=fopen("saveSlot2.bin","rb+");
     }
     else if(saveSlot=='3'){
-         fb=fopen("saveSlot3.bin","w+");
+         fb=fopen("saveSlot3.bin","rb+");
     }
     fwrite(&gameSize,sizeof(int),1,fb);
     int i;
