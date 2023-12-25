@@ -4,6 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "save.h"
+#define size 256
 void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, if = 1, it's enabled
 {
     int i,j,player1Moves=0,player2Moves=0;
@@ -107,6 +108,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                 else if (strcmp("save",b)==0)
                 {
 /////////////////save
+    saveTheGame(gameSize,Arr,playerTurn,player1,player2,p1Score,p2Score, player1Moves, player2Moves, z);
                 }
                 else if (strcmp("exit",b)==0)
                 {
@@ -210,7 +212,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                 else if (strcmp("save",b)==0)
                 {
 /////////////////save
-                 saveTheGame(gameSize,Arr,playerTurn,player1, Player2 ,p1Score,p2Score, player1Moves, player2Moves, z);
+                 saveTheGame(gameSize,Arr,playerTurn,player1,player2,p1Score,p2Score, player1Moves, player2Moves, z);
                 }
                 else if (strcmp("exit",b)==0)
                 {
