@@ -26,13 +26,9 @@ void saveTheGame(int gameSize,char arr[2*gameSize+1][2*gameSize+1],int playerTur
     for(i=0;i<=2*gameSize;i++){
         fwrite(arr[i],sizeof(char),2*gameSize+1,fb);
     }
-    fwrite(&playerTurn,sizeof(int),1,fb);
+    char numericalGameData[100]=sprintf("%d,%d,%d,%d,%d,%d",playerTurn,p1Score,p2Score,player1Moves,player2Moves,z);
     fwrite(player1,sizeof(char),256,fb);
     fwrite(player2,sizeof(char),256,fb);
-    fwrite(&p1Score,sizeof(int),1,fb);
-    fwrite(&p2Score,sizeof(int),1,fb);
-    fwrite(&player1Moves,sizeof(int),1,fb);
-    fwrite(&player2Moves,sizeof(int),1,fb);
-    fwrite(&z,sizeof(int),1,fb);
+    fwrite(numericalGameData,sizeof(char),100,fb);
     fclose(fb);
 }

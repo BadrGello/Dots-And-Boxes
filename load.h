@@ -31,16 +31,10 @@ void loadTheGame() {
     }
 
     int playerTurn, p1Score, p2Score, player1Moves, player2Moves, z;
-    char player1[256], player2[256];
-    fread(&playerTurn, sizeof(int), 1, fb);
+    char player1[256], player2[256],numericalGameData[100];
     fread(player1, sizeof(char), 256, fb);
     fread(player2, sizeof(char), 256, fb);
-    fread(&p1Score, sizeof(int), 1, fb);
-    fread(&p2Score, sizeof(int), 1, fb);
-    fread(&player1Moves, sizeof(int), 1, fb);
-    fread(&player2Moves, sizeof(int), 1, fb);
-    fread(&z, sizeof(int), 1, fb);
-
+    fread(numericalGameData,sizeof(char),100,fb);
     fclose(fb);
-    printf("%d", gameSize);
+    printf("%s", numericalGameData);
 }
