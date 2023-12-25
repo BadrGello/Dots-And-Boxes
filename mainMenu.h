@@ -1,6 +1,6 @@
-#include "load.h"
 #include "readLine.h"
 #include "playGround.h"
+#include "load.h"
 void mainMenu(){
     int gameSize;
     char menu[100];
@@ -88,7 +88,7 @@ void mainMenu(){
             }
            /* else if (strcmp("1 vs bot",menu)==0 || strcmp("1vsbot",menu)==0 || strcmp("bot",menu)==0 || strcmp("2",menu)==0 || strcmp("one vs bot",menu)==0 || strcmp("onevsbot",menu)==0)
             {
-/////////////////BOT AI
+             /////////////////BOT AI
             }*/
             else if (strcmp("return",menu)==0 || strcmp("r",menu)==0 || strcmp("3",menu)==0)
             {
