@@ -21,6 +21,7 @@ void saveTheGame(int gameSize,char arr[2*gameSize+1][2*gameSize+1],int playerTur
     else if(saveSlot=='3'){
          fb=fopen("saveSlot3.bin","w+");
     }
+    fwrite(&gameSize,sizeof(int),1,fb);
     int i;
     for(i=0;i<=2*gameSize;i++){
         fwrite((*arr)+i,sizeof(char),2*gameSize+1,fb);
