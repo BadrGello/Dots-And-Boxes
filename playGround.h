@@ -124,14 +124,14 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                     if(Arr[r1+r2-2][c1+c2-4]!=' ' && Arr[r1+r2-3][c1+c2-3]!=' ' && Arr[r1+r2-1][c1+c2-3]!=' ') {
                     Arr[r1+r2-2][c1+c2-3]='6'; // #
                     p1Score++;
-                    if (dfsFlag==1) dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
+                    if (dfsFlag==1) chainOfBoxes(gameSize,Arr,r1,c1,r2,c2,&z,&player1Moves,&p1Score);
                     }
                     }
                     if(c1!=gameSize+1){
                     if (Arr[r1+r2-2][c1+c2]!=' '&& Arr[r1+r2-3][c1+c2-1]!=' ' && Arr[r1+r2-1][c1+c2-1]!=' ') {
                        Arr[r1+r2-2][c1+c2-1]='6'; // #
                        p1Score++;
-                       if (dfsFlag==1) dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
+                       if (dfsFlag==1) chainOfBoxes(gameSize,Arr,r1,c1,r2,c2,&z,&player1Moves,&p1Score);
                     }
                 }
                 }
@@ -142,14 +142,14 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                      if(Arr[r1+r2][c1+c2-2]!=' '  && Arr[r1+r2-1][c1+c2-1]!=' ' &&Arr[r1+r2-1][c1+c2-3]!=' '  ){
                      Arr[r1+r2-1][c1+c2-2]='6';
                      p1Score++;
-                     if (dfsFlag==1) dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
+                     if (dfsFlag==1) chainOfBoxes(gameSize,Arr,r1,c1,r2,c2,&z,&player1Moves,&p1Score);
                      }
                      }
                      if(r1!=1){
                      if(Arr[r1+r2-4][c1+c2-2]!=' ' && Arr[r1+r2-3][c1+c2-1]!=' ' &&Arr[r1+r2-3][c1+c2-3]!=' '  ){
                      Arr[r1+r2-3][c1+c2-2]='6';
                      p1Score++;
-                     if (dfsFlag==1) dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player1Moves,&p1Score);
+                     if (dfsFlag==1) chainOfBoxes(gameSize,Arr,r1,c1,r2,c2,&z,&player1Moves,&p1Score);
                      }
                 }
                 }
@@ -229,14 +229,14 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                     if(Arr[r1+r2-2][c1+c2-4]!=' '&& Arr[r1+r2-3][c1+c2-3]!=' ' && Arr[r1+r2-1][c1+c2-3]!=' ') {
                     Arr[r1+r2-2][c1+c2-3]='7'; // #
                     p2Score++;
-                    if (dfsFlag==1) dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
+                    if (dfsFlag==1) chainOfBoxes(gameSize,Arr,r1,c1,r2,c2,&z,&player2Moves,&p2Score);
                     }
                     }
                     if(c1!=gameSize+1 ){
                     if (Arr[r1+r2-2][c1+c2]!=' '&&  Arr[r1+r2-3][c1+c2-1]!=' ' && Arr[r1+r2-1][c1+c2-1]!=' ') {
                        Arr[r1+r2-2][c1+c2-1]='7'; // #
                        p2Score++;
-                       if (dfsFlag==1) dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
+                       if (dfsFlag==1) chainOfBoxes(gameSize,Arr,r1,c1,r2,c2,&z,&player2Moves,&p2Score);
                     }
                     }
                 }
@@ -247,14 +247,14 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                     if(Arr[r1+r2][c1+c2-2]!=' '&&Arr[r1+r2-1][c1+c2-1]!=' ' &&Arr[r1+r2-1][c1+c2-3]!=' '  ){
                      Arr[r1+r2-1][c1+c2-2]='7';
                      p2Score++;
-                     if (dfsFlag==1) dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
+                     if (dfsFlag==1) chainOfBoxes(gameSize,Arr,r1,c1,r2,c2,&z,&player2Moves,&p2Score);
                      }
                     }
                     if(r1!=1 ){
                      if(Arr[r1+r2-4][c1+c2-2]!=' ' &&  Arr[r1+r2-3][c1+c2-1]!=' ' &&Arr[r1+r2-3][c1+c2-3]!=' '  ){
                      Arr[r1+r2-3][c1+c2-2]='7';
                      p2Score++;
-                     if (dfsFlag==1) dfs(gameSize,Arr,&r1,&c1,&r2,&c2,&z,&player2Moves,&p2Score);
+                     if (dfsFlag==1) chainOfBoxes(gameSize,Arr,r1,c1,r2,c2,&z,&player2Moves,&p2Score);
                      }
                     }
                 }
