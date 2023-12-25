@@ -40,5 +40,5 @@ void loadTheGame(){
     fread(&player2Moves,sizeof(int),1,fb);
     fread(&z,sizeof(int),1,fb);
     fclose(fb);
-    activeplayGround( arr[gameSize*2 + 1][gameSize*2 + 1], gameSize, 0, 0);
+    printf("%d",gameSize);
 }
