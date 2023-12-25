@@ -50,7 +50,7 @@ void mainMenu(){
             {
                 system("cls");
                 while(1){
-                printf("Enter The Game Size (1 Digit) From 2 up to 9\nReturn\n");
+                printf("Enter The Game Size (1 Digit) From 2 up to 9 [3*3 Dots up to 10*10 Dots]\nReturn\n");
                 readLine(menu,100);
                 for(int i=2;i<=9;i++)
                 {
