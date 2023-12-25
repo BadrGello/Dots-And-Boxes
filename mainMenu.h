@@ -1,3 +1,4 @@
+#include "load.h"
 #include "readLine.h"
 #include "playGround.h"
 void mainMenu(){
@@ -107,7 +108,7 @@ void mainMenu(){
         //*********//
         if (option==2)
         {
-            
+        loadTheGame();
         }
 
         //***********//
