@@ -69,7 +69,7 @@ void mainMenu(){
                         }
                         }
                         gameSize=i;
-                        playGround(gameSize-1,dfsFlag,botFlag);
+                        playGround(gameSize,dfsFlag,botFlag);
                         exit(0);
                     }
                 }
