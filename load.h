@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<string.h>
+#include <string.h>
+#include "playGround.h"
 void loadTheGame() {
     FILE *fb;
     char saveSlot = '1';
