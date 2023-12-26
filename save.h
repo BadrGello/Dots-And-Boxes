@@ -9,7 +9,7 @@ void saveTheGame(int gameSize,char arr[2*gameSize+1][2*gameSize+1],int playerTur
     if(saveSlot-'0'>3 ||saveSlot-'0'<=0) {
     printf("invalid value");
     }
-     printf("choose saveslot from 1 to 3\n");
+    printf("choose saveslot from 1 to 3\n");
     scanf("%c",&saveSlot);
     } while ( saveSlot-'0'>3 ||saveSlot-'0'<=0);
     if(saveSlot=='1'){

@@ -43,7 +43,8 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
         int r1,c1,r2,c2;
         char b[5];
         clock_t begin = clock();
-        int time_spent=0,t=0;
+        int time_spent=savedTime,t=savedTime/60;
+        time_spent-=t*60;
         //*************//
         //The Game Loop//
         //*************//
@@ -114,14 +115,9 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                 else if (strcmp("save",b)==0)
                 {
 /////////////////save
-                 clock_t end = clock();
-                 time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
                  savedTime = time_spent;
-                 saveTheGame(gameSize,Arr, playerTurn, player1, player2,p1Score, p2Score, player1Moves, player2Moves,z, dfsFlag,botFlag,savedTime);
-                 t=time_spent/60;
-                 if (t!=0) time_spent-=t*60;
-
-                 continue;
+                 saveTheGame(gameSize,Arr,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
+                 savedTime=0;
                 }
                 else if (strcmp("exit",b)==0)
                 {
@@ -225,14 +221,9 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                 else if (strcmp("save",b)==0)
                 {
 /////////////////save
-                 clock_t end = clock();
-                 time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
-                 savedTime = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
-                 saveTheGame(gameSize,Arr, playerTurn, player1, player2,p1Score, p2Score, player1Moves, player2Moves,z,  dfsFlag,  botFlag, savedTime);
-                 t=time_spent/60;
-                 if (t!=0) time_spent-=t*60;
-
-                 continue;
+                 savedTime = time_spent;
+                 saveTheGame(gameSize,Arr,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
+                 savedTime=0;
                 }
                 else if (strcmp("exit",b)==0)
                 {
