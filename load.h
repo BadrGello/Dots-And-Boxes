@@ -53,7 +53,7 @@ void loadTheGame() {
     fread(player1, sizeof(char), 256, fb);
     fread(player2, sizeof(char), 256, fb);
     fclose(fb);
-     system("cls");
+    system("cls");
     activeplayGround(gameSize,arr,player1,player2,dfsFlag,botFlag,playerTurn,p1Score,p2Score,player1moves,player2moves,z,savedTime);
 
 }
