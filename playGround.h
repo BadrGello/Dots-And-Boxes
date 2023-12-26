@@ -117,7 +117,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                  clock_t end = clock();
                  time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
                  savedTime = time_spent;
-                 saveTheGame(gameSize,Arr, playerTurn, player1, player2,p1Score, p2Score, player1Moves, player2Moves,z,  dfsFlag,  botFlag,savedTime);
+                 saveTheGame(gameSize,Arr, playerTurn, player1, player2,p1Score, p2Score, player1Moves, player2Moves,z, dfsFlag,botFlag,savedTime);
                  t=time_spent/60;
                  if (t!=0) time_spent-=t*60;
 
