@@ -21,26 +21,28 @@ void loadTheGame() {
     } else if (saveSlot == '3') {
         fb = fopen("saveSlot3.bin", "rb");
     }
-    char *pgameSize,*pplayerTurn,*pp1Score,*pp2Score,*pplayer1moves,*pplayer2moves,*pz,*pbotflag,*pdfsflag,numericalGameData[100];
+    char *pb,numericalGameData[100];
     fread(numericalGameData,sizeof(char),100,fb);
-    pgameSize=strtok(numericalGameData,",");
-    pplayerTurn=strtok(NULL,",");
-    pdfsflag=strtok(NULL,",");
-    pbotflag=strtok(NULL,",");
-    pp1Score=strtok(NULL,",");
-    pp2Score=strtok(NULL,",");
-    pplayer1moves=strtok(NULL,",");
-    pplayer2moves=strtok(NULL,",");
-    pz=strtok(NULL,".");
-    int gameSize=pgameSize[0]-'0';
-    int playerTurn=pplayerTurn[0]-'0';
-    int dfsFlag=pdfsflag[0]-'0';
-    int botFlag=pbotflag[0]-'0';
-    int p1Score=atoi(pp1Score);
-    int p2Score=atoi(pp2Score);
-    int player1moves=atoi(pplayer1moves);
-    int player2moves=atoi(pplayer2moves);
-    int z=atoi(pz);
+    pb=strtok(numericalGameData,",");
+    int gameSize=pb[0]-'0';
+    pb=strtok(NULL,",");
+    int playerTurn=pb[0]-'0';
+    pb=strtok(NULL,",");
+    int dfsFlag=pb[0]-'0';
+    pb=strtok(NULL,",");
+    int botFlag=pb[0]-'0';
+    pb=strtok(NULL,",");
+    int savedTime=atoi(pb);
+    pb=strtok(NULL,",");
+    int p1Score=atoi(pb);
+    pb=strtok(NULL,",");
+    int p2Score=atoi(pb);
+    pb=strtok(NULL,",");
+    int player1moves=atoi(pb);
+    pb=strtok(NULL,",");
+    int player2moves=atoi(pb);
+    pb=strtok(NULL,".");
+    int z=atoi(pb);
     char arr[2 * gameSize + 1][2 * gameSize + 1];
     int i,j;
     for (i = 0; i <= 2 * gameSize; i++) {
@@ -50,8 +52,8 @@ void loadTheGame() {
     fread(player1, sizeof(char), 256, fb);
     fread(player2, sizeof(char), 256, fb);
     fclose(fb);
+     system("cls");
 
-
-    activeplayGround(gameSize,arr,player1,player2,dfsFlag,botFlag,playerTurn,p1Score,p2Score,player1moves,player2moves,z);
+    activeplayGround(gameSize,arr,player1,player2,dfsFlag,botFlag,playerTurn,p1Score,p2Score,player1moves,player2moves,z,savedTime);
 
 }

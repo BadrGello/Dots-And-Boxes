@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include "save.h"
 #define size 256
-    void activeplayGround( int gameSize,char Arr[gameSize*2 + 1][gameSize*2 + 1] ,char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z );
+void activeplayGround( int gameSize,char Arr[gameSize*2 + 1][gameSize*2 + 1] ,char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z,int savedTime );
 void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, if = 1, it's enabled
 {
     int i,j;
@@ -30,20 +30,20 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
          printf("\033[0;31mPlayer2, enter your name:\033[0m "); //player 2 is red
          scanf("%s",player2);
          system("cls");}
+         int savedTime=0;
 
          char options[100];
-          activeplayGround( gameSize,Arr,player1,player2, dfsFlag,  botFlag,playerTurn,p1Score,p2Score,player1Moves,player2Moves,z);
+          activeplayGround( gameSize,Arr,player1,player2, dfsFlag,  botFlag,playerTurn,p1Score,p2Score,player1Moves,player2Moves,z,savedTime);
 
 }
 
-    void activeplayGround( int gameSize,char Arr[gameSize*2 + 1][gameSize*2 + 1],char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z )
+    void activeplayGround( int gameSize,char Arr[gameSize*2 + 1][gameSize*2 + 1],char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z ,int savedTime)
     {
 
         int r1,c1,r2,c2;
         char b[5];
         clock_t begin = clock();
         int time_spent=0,t=0;
-
         //*************//
         //The Game Loop//
         //*************//
@@ -114,7 +114,14 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                 else if (strcmp("save",b)==0)
                 {
 /////////////////save
-    saveTheGame(gameSize,Arr, playerTurn, player1, player2,p1Score, p2Score, player1Moves, player2Moves,z,  dfsFlag,  botFlag);
+                 clock_t end = clock();
+                 time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
+                 savedTime = time_spent;
+                 saveTheGame(gameSize,Arr, playerTurn, player1, player2,p1Score, p2Score, player1Moves, player2Moves,z,  dfsFlag,  botFlag,savedTime);
+                 t=time_spent/60;
+                 if (t!=0) time_spent-=t*60;
+
+                 continue;
                 }
                 else if (strcmp("exit",b)==0)
                 {
@@ -173,7 +180,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                         z--;
 
                         clock_t end = clock();
-                        time_spent = (int)(end - begin) / CLOCKS_PER_SEC;
+                        time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
                         t=time_spent/60;
                         if (t!=0) time_spent-=t*60;
 
@@ -184,7 +191,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                 playerTurn=2;
                 z--;
                 clock_t end = clock();
-                time_spent = (int)(end - begin) / CLOCKS_PER_SEC;
+                time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
                 t=time_spent/60;
                 if (t!=0) time_spent-=t*60;
                 system( "cls" );
@@ -218,7 +225,14 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                 else if (strcmp("save",b)==0)
                 {
 /////////////////save
-                 saveTheGame(gameSize,Arr, playerTurn, player1, player2,p1Score, p2Score, player1Moves, player2Moves,z,  dfsFlag,  botFlag);
+                 clock_t end = clock();
+                 time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
+                 savedTime = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
+                 saveTheGame(gameSize,Arr, playerTurn, player1, player2,p1Score, p2Score, player1Moves, player2Moves,z,  dfsFlag,  botFlag, savedTime);
+                 t=time_spent/60;
+                 if (t!=0) time_spent-=t*60;
+
+                 continue;
                 }
                 else if (strcmp("exit",b)==0)
                 {
@@ -278,7 +292,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                         z--;
 
                         clock_t end = clock();
-                        time_spent = (int)(end - begin) / CLOCKS_PER_SEC;
+                        time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
                         t=time_spent/60;
                         if (t!=0) time_spent-=t*60;
 
@@ -290,7 +304,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                 z--;
 
                 clock_t end = clock();
-                time_spent = (int)(end - begin) / CLOCKS_PER_SEC;
+                time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
                 t=time_spent/60;
                 if (t!=0) time_spent-=t*60;
 

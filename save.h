@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-void saveTheGame(int gameSize,char arr[2*gameSize+1][2*gameSize+1],int playerTurn,char player1[256],char player2[256],int p1Score,int p2Score,int player1Moves,int player2Moves,int z, int dfsFlag, int botFlag){
+void saveTheGame(int gameSize,char arr[2*gameSize+1][2*gameSize+1],int playerTurn,char player1[256],char player2[256],int p1Score,int p2Score,int player1Moves,int player2Moves,int z, int dfsFlag, int botFlag,int savedTime){
     FILE *fb;
      char saveSlot='1';
     do
@@ -22,7 +22,7 @@ void saveTheGame(int gameSize,char arr[2*gameSize+1][2*gameSize+1],int playerTur
          fb=fopen("saveSlot3.bin","w+");
     }
     char numericalGameData[100];
-    sprintf(numericalGameData,"%d,%d,%d,%d,%d,%d,%d,%d,%d.",gameSize,playerTurn,dfsFlag,botFlag,p1Score,p2Score,player1Moves,player2Moves,z);
+    sprintf(numericalGameData,"%d,%d,%d,%d,%d,%d,%d,%d,%d,%d.",gameSize,playerTurn,dfsFlag,botFlag,savedTime,p1Score,p2Score,player1Moves,player2Moves,z);
     fwrite(numericalGameData,sizeof(char),100,fb);
     int i;
     for(i=0;i<=2*gameSize;i++){
