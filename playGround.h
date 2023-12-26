@@ -40,7 +40,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
 {
 
         int r1,c1,r2,c2;
-        char b[5];
+        char b[5]; b[4]='\0';
         clock_t begin = clock();
         int time_spent=savedTime,t=savedTime/60;
         time_spent-=t*60;
@@ -50,6 +50,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
         //*************//
         //The Game Loop//
         //*************//
+
         int EXIT=0;
         while(z>0) //while there are still remaining moves to play, the game will continue looping
         {
@@ -57,6 +58,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
             int moveChecker=0;
             int winChecker=0;
             int undoRedoCheck=0;
+
             //printing the time
             printf("Time Spent %d:%d\n",t,time_spent);
             //printing the score and the moves
@@ -118,13 +120,13 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 if (strcmp("undo",b)==0) //UNDO//
                 {
                     undoRedoCheck=1;
-                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);                    continue;
+                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);
                     break;
                 }
                 else if (strcmp("redo",b)==0) //REDO//
                 {
                     undoRedoCheck=2;
-                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);                    continue;
+                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);
                     break;
                 }
                 else if (strcmp("save",b)==0) //SAVE//
@@ -193,7 +195,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                      }
 
                      //UNDOREDO FUNC to write the current move//
-                     undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);                    continue;
+                     undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);
                 }
                 else
                 {
@@ -244,13 +246,13 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 if (strcmp("undo",b)==0) //UNDO//
                 {
                     undoRedoCheck=1;
-                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);                    continue;
+                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);
                     break;
                 }
                 else if (strcmp("redo",b)==0) //REDO//
                 {
                     undoRedoCheck=2;
-                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);                    continue;
+                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);
                     break;
                 }
                 else if (strcmp("save",b)==0) //SAVE//
@@ -294,7 +296,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                     }
 
                     //UNDOREDO FUNC to write the current move//
-                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);                    continue;
+                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);
 
                 }
                 else if ((r2==r1)&&(abs(c1-c2)==1)&&(Grid[r1+r2-2][c1+c2-2]==' '&&r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)){
@@ -321,7 +323,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                     }
 
                     //UNDOREDO FUNC to write the current move//
-                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);                    continue;
+                    undoRedo(undoRedoCheck, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z ,r1, c1, r2, c2, moveChecker, winChecker);
                 }
                 else
                 {

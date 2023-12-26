@@ -21,7 +21,7 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
 {
     int currentMove;
     int lastMove;
-    if (*player1Moves==0 && *player2Moves==0){ currentMove=0; lastMove=0; printf("currentMove=0 Success");}
+    if (*player1Moves==0 && *player2Moves==0){ currentMove=0; lastMove=0; printf("currentMove=0 Success\n");}
     stepInfoStruct steps[2*gameSize*(gameSize+1)];
     int state=0;
 
@@ -56,7 +56,7 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
         *remMoves=((steps[currentMove])).remMoves;
 
         if(moveChecker==2 || moveChecker==3 || moveChecker==4 || moveChecker==5) Grid[((steps[currentMove])).r1 + ((steps[currentMove])).r2-2][(steps[currentMove]).c1 + (steps[currentMove]).c2-2]=' ';
-        else printf("ERROR ON UNDO REDO FUNCTION");
+        else printf("ERROR ON UNDO REDO FUNCTION\n");
 
         switch((steps[currentMove]).winChecker)
         {
