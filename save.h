@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-void saveTheGame(int gameSize,char arr[2*gameSize+1][2*gameSize+1],int playerTurn,char player1[256],char player2[256],int p1Score,int p2Score,int player1Moves,int player2Moves,int z, int dfsFlag, int botFlag,int savedTime){
+void saveTheGame(int gameSize,char Grid[2*gameSize+1][2*gameSize+1],int playerTurn,char player1[256],char player2[256],int p1Score,int p2Score,int player1Moves,int player2Moves,int z, int dfsFlag, int botFlag,int savedTime){
     FILE *fb;
      char saveSlot='1';
     do
@@ -26,7 +26,7 @@ void saveTheGame(int gameSize,char arr[2*gameSize+1][2*gameSize+1],int playerTur
     fwrite(numericalGameData,sizeof(char),100,fb);
     int i;
     for(i=0;i<=2*gameSize;i++){
-        fwrite(arr[i],sizeof(char),2*gameSize+1,fb);
+        fwrite(Grid[i],sizeof(char),2*gameSize+1,fb);
     }
     fwrite(player1,sizeof(char),256,fb);
     fwrite(player2,sizeof(char),256,fb);
