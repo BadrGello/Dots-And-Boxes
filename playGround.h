@@ -40,21 +40,23 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
 {
 
         int r1,c1,r2,c2;
-        char b[5]; b[0]='\0';
+        char b[5];
         clock_t begin = clock();
         int time_spent=savedTime,t=savedTime/60;
         time_spent-=t*60;
 
         //int steps[z];
-        int undoRedoCheck=0;
-        int moveChecker=0;
-        int winChecker=0;
+
         //*************//
         //The Game Loop//
         //*************//
         int EXIT=0;
         while(z>0) //while there are still remaining moves to play, the game will continue looping
         {
+
+            int moveChecker=0;
+            int winChecker=0;
+            int undoRedoCheck=0;
             //printing the time
             printf("Time Spent %d:%d\n",t,time_spent);
             //printing the score and the moves
