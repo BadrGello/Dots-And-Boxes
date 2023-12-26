@@ -3,11 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "save.h"
+#define size 256
+    void activeplayGround( int gameSize,char Arr[gameSize*2 + 1][gameSize*2 + 1] ,char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z );
 void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, if = 1, it's enabled
 {
-    int i,j,player1Moves=0,player2Moves=0;
-    char Arr[2*gameSize+1][2*gameSize+1],b[5];
-    b[4]='\0';
+    int i,j;
+    char Arr[2*gameSize+1][2*gameSize+1];
     //The following is initializing the gird with the given gameSize
     for (i=0;i<=2*gameSize;i++){
         for (j=0;j<=2*gameSize;j++){
@@ -16,23 +18,29 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
         }
     }
 
-    char options[100];
+         int p1Score=0,p2Score=0,z=2*gameSize*(gameSize+1),player1Moves=0,player2Moves=0; //z is the remaining moves
+         int playerTurn=1; //1 or 2 or 0(BOT)[Acts as player 2]
+         char player1[256],player2[256];
+          //holds the players names
+         printf("\033[0;34mPlayer1, enter your name:\033[0m "); //player 1 is blue
+         scanf("%s",player1);
+         system("cls");
+         if(botFlag==1){strcpy(player2, "Computer");} //if not bot, it'll scanf for player 2 name instead
+         else{
+         printf("\033[0;31mPlayer2, enter your name:\033[0m "); //player 2 is red
+         scanf("%s",player2);
+         system("cls");}
 
-    void activeplayGround(char Arr[gameSize*2 + 1][gameSize*2 + 1], int gameSize, int dfsFlag, int botFlag)
+         char options[100];
+          activeplayGround( gameSize,Arr,player1,player2, dfsFlag,  botFlag,playerTurn,p1Score,p2Score,player1Moves,player2Moves,z);
+
+}
+
+    void activeplayGround( int gameSize,char Arr[gameSize*2 + 1][gameSize*2 + 1],char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z )
     {
-        char player1[256],player2[256];   //holds the players names
-        int r1,c1,r2,c2,p1Score=0,p2Score=0,z=2*gameSize*(gameSize+1); //z is the remaining moves
-        int playerTurn=1; //1 or 2 or 0(BOT)[Acts as player 2]
 
-        printf("\033[0;34mPlayer1, enter your name:\033[0m "); //player 1 is blue
-        scanf("%s",player1);
-        system("cls");
-        if(botFlag==1){strcpy(player2, "Computer");} //if not bot, it'll scanf for player 2 name instead
-        else{
-        printf("\033[0;31mPlayer2, enter your name:\033[0m "); //player 2 is red
-        scanf("%s",player2);
-        system("cls");}
-
+        int r1,c1,r2,c2;
+        char b[5];
         clock_t begin = clock();
         int time_spent=0,t=0;
 
@@ -106,6 +114,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                 else if (strcmp("save",b)==0)
                 {
 /////////////////save
+    saveTheGame(gameSize,Arr, playerTurn, player1, player2,p1Score, p2Score, player1Moves, player2Moves,z,  dfsFlag,  botFlag);
                 }
                 else if (strcmp("exit",b)==0)
                 {
@@ -209,6 +218,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
                 else if (strcmp("save",b)==0)
                 {
 /////////////////save
+                 saveTheGame(gameSize,Arr, playerTurn, player1, player2,p1Score, p2Score, player1Moves, player2Moves,z,  dfsFlag,  botFlag);
                 }
                 else if (strcmp("exit",b)==0)
                 {
@@ -321,8 +331,5 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
         else   printf("Draw");
     }
 
-    activeplayGround(Arr, gameSize, dfsFlag, botFlag);
-
-}
 
 
