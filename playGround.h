@@ -59,7 +59,10 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
         while(z>0) //while there are still remaining moves to play, the game will continue looping
         {
 
-
+            clock_t end = clock();
+            time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
+            t=time_spent/60;
+            if (t!=0) time_spent-=t*60;
             //printing the time
             printf("Time Spent %d:%d\n",t,time_spent);
             //printing the score and the moves
@@ -207,22 +210,12 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 if(p1Score>l) {
                         system( "cls" );
                         z--;
-
-                        clock_t end = clock();
-                        time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
-                        t=time_spent/60;
-                        if (t!=0) time_spent-=t*60;
-
                         continue;
 
                 }
 
                 playerTurn=2;
                 z--;
-                clock_t end = clock();
-                time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
-                t=time_spent/60;
-                if (t!=0) time_spent-=t*60;
                 system( "cls" );
             }
 
@@ -334,24 +327,12 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 if(p2Score>t) {
                         z--;
-
-                        clock_t end = clock();
-                        time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
-                        t=time_spent/60;
-                        if (t!=0) time_spent-=t*60;
-
                         system( "cls" );
                         continue;
 
                 }
                 playerTurn=1;
                 z--;
-
-                clock_t end = clock();
-                time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
-                t=time_spent/60;
-                if (t!=0) time_spent-=t*60;
-
                 system( "cls" );
             }
 
