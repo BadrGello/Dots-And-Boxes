@@ -23,7 +23,7 @@ typedef struct
 void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSize*2 + 1], int *playerTurn, int *p1Score, int *p2Score, int *player1Moves, int *player2Moves, int *remMoves, int r1, int c1, int r2, int c2, int moveChecker, int winChecker1, int winChecker2, int *currentMove, int *lastMove, stepInfoStruct steps[])
 {
     //Debugging//
-    printf("Before Entering Any IF: undoRedoCheck %d, playerTurn %d, p1Score %d, p2Score %d, player1Moves %d, player2Moves %d, remMoves %d, r1 %d, c1 %d, r2 %d, c2 %d, moveChecker %d, winChecker1 %d, winChecker2 %d, *currentMove %d, *lastMove %d, \n", undoRedoCheck, *playerTurn, *p1Score, *p2Score, *player1Moves, *player2Moves, *remMoves, r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, *currentMove, *lastMove);
+    //printf("Before Entering Any IF: undoRedoCheck %d, playerTurn %d, p1Score %d, p2Score %d, player1Moves %d, player2Moves %d, remMoves %d, r1 %d, c1 %d, r2 %d, c2 %d, moveChecker %d, winChecker1 %d, winChecker2 %d, *currentMove %d, *lastMove %d, \n", undoRedoCheck, *playerTurn, *p1Score, *p2Score, *player1Moves, *player2Moves, *remMoves, r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, *currentMove, *lastMove);
     //Debugging//
 
     //if (*player1Moves==0 && *player2Moves==0){ **currentMove=0; printf("*currentMove=0 Success\n");}
@@ -91,7 +91,7 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
         //*currentMove=*currentMove-1;
 
         //Debugging//
-        printf("undoRedoCheck %d, playerTurn %d, p1Score %d, p2Score %d, player1Moves %d, player2Moves %d, remMoves %d, r1 %d, c1 %d, r2 %d, c2 %d, moveChecker %d, winChecker1 %d, winChecker2 %d, *currentMove %d, *lastMove %d, \n", undoRedoCheck, *playerTurn, *p1Score, *p2Score, *player1Moves, *player2Moves, *remMoves, r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, *currentMove, *lastMove);
+        //printf("undoRedoCheck %d, playerTurn %d, p1Score %d, p2Score %d, player1Moves %d, player2Moves %d, remMoves %d, r1 %d, c1 %d, r2 %d, c2 %d, moveChecker %d, winChecker1 %d, winChecker2 %d, *currentMove %d, *lastMove %d, \n", undoRedoCheck, *playerTurn, *p1Score, *p2Score, *player1Moves, *player2Moves, *remMoves, r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, *currentMove, *lastMove);
         //Debugging//
 
         //if(moveChecker==2 || moveChecker==3 || moveChecker==4 || moveChecker==5) Grid[steps[*currentMove].r1 + steps[*currentMove].r2-2][(steps[*currentMove]).c1 + (steps[*currentMove]).c2-2]=' ';
@@ -128,7 +128,7 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
             case 73: Grid[(steps[*currentMove+1]).r1 + (steps[*currentMove+1]).r2-3][(steps[*currentMove+1]).c1 + (steps[*currentMove+1]).c2-2]=' '; break;
             default: break;
         }
-        //system("cls");
+        system("cls");
 
 
     }
@@ -148,7 +148,7 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
         //*currentMove=*currentMove+1;
 
         //Debugging//
-        printf("undoRedoCheck %d, playerTurn %d, p1Score %d, p2Score %d, player1Moves %d, player2Moves %d, remMoves %d, r1 %d, c1 %d, r2 %d, c2 %d, moveChecker %d, winChecker1 %d, winChecker2 %d, *currentMove %d, *lastMove %d, \n", undoRedoCheck, *playerTurn, *p1Score, *p2Score, *player1Moves, *player2Moves, *remMoves, r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, *currentMove, *lastMove);
+        //printf("undoRedoCheck %d, playerTurn %d, p1Score %d, p2Score %d, player1Moves %d, player2Moves %d, remMoves %d, r1 %d, c1 %d, r2 %d, c2 %d, moveChecker %d, winChecker1 %d, winChecker2 %d, *currentMove %d, *lastMove %d, \n", undoRedoCheck, *playerTurn, *p1Score, *p2Score, *player1Moves, *player2Moves, *remMoves, r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, *currentMove, *lastMove);
         //Debugging//
 
 
@@ -176,7 +176,7 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
             case 73: Grid[(steps[*currentMove]).r1 + (steps[*currentMove]).r2-3][(steps[*currentMove]).c1 + (steps[*currentMove]).c2-2]='7'; break;
             default: break;
         }
-        //system("cls");
+        system("cls");
 
 
     }

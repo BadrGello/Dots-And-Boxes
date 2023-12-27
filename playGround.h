@@ -219,12 +219,12 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                     continue;
                 }
                 if(p1Score>l) {
-                        //system( "cls" );
-                        z--;
-                        
 
+                        z--;
                         if (dfsFlag==1) chainOfBoxes(gameSize,Grid,r1,c1,r2,c2,&z,&player1Moves,&p1Score);
                         undoRedo(0, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z , r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, &currentMove, &lastMove, steps);
+
+                        system( "cls" );
                         continue;
 
                 }
@@ -233,9 +233,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 z--;
                 undoRedo(0, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z , r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, &currentMove, &lastMove, steps);
 
-
-
-                //system( "cls" );
+                system( "cls" );
             }
 
             //********//
@@ -345,7 +343,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                         if (dfsFlag==1) chainOfBoxes(gameSize,Grid,r1,c1,r2,c2,&z,&player1Moves,&p1Score);
                         undoRedo(0, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z , r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, &currentMove, &lastMove, steps);
 
-                        //system( "cls" );
+                        system( "cls" );
                         continue;
 
                 }
@@ -353,8 +351,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 z--;
                 undoRedo(0, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z , r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, &currentMove, &lastMove, steps);
 
-
-                //system( "cls" );
+                system( "cls" );
             }
 
 
