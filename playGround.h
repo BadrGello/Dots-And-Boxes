@@ -44,7 +44,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
         clock_t begin = clock();
         int time_spent=savedTime,t=savedTime/60;
         time_spent-=t*60;
-
+        int carrier=savedTime;
         //int steps[z];
 
         //*************//
@@ -62,7 +62,10 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
         int EXIT=0;
         while(z>0) //while there are still remaining moves to play, the game will continue looping
         {
-
+            clock_t end = clock();
+            time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
+            t=time_spent/60;
+            time_spent-=t*60;
             if (undoRedoCheck==-1)
                 {undoRedo(-1, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z , &r1, &c1, &r2, &c2, moveChecker, winChecker1, winChecker2, &currentMove, &lastMove);}
             undoRedoCheck=0;
@@ -142,9 +145,9 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 else if (strcmp("save",b)==0) //SAVE//
                 {
-                    savedTime = time_spent;
-                    saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
-                    savedTime=0;
+                 savedTime = time_spent;
+                 saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
+                 savedTime=carrier;
                 }
                 else if (strcmp("exit",b)==0)
                 {
@@ -219,22 +222,12 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 if(p1Score>l) {
                         system( "cls" );
                         z--;
-
-                        clock_t end = clock();
-                        time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
-                        t=time_spent/60;
-                        if (t!=0) time_spent-=t*60;
-
                         continue;
 
                 }
 
                 playerTurn=2;
                 z--;
-                clock_t end = clock();
-                time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
-                t=time_spent/60;
-                if (t!=0) time_spent-=t*60;
                 system( "cls" );
             }
 
@@ -270,9 +263,9 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 else if (strcmp("save",b)==0) //SAVE//
                 {
-                    savedTime = time_spent;
-                    saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
-                    savedTime=0;
+                 savedTime = time_spent;
+                 saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
+                 savedTime=carrier;
                 }
                 else if (strcmp("exit",b)==0)
                 {
@@ -346,23 +339,12 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 if(p2Score>t) {
                         z--;
-
-                        clock_t end = clock();
-                        time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
-                        t=time_spent/60;
-                        if (t!=0) time_spent-=t*60;
-
                         system( "cls" );
                         continue;
 
                 }
                 playerTurn=1;
                 z--;
-
-                clock_t end = clock();
-                time_spent = ((int)(end - begin) / CLOCKS_PER_SEC)+savedTime;
-                t=time_spent/60;
-                if (t!=0) time_spent-=t*60;
                 system( "cls" );
             }
 
