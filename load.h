@@ -4,12 +4,16 @@
 void loadTheGame() {
     FILE *fb;
     char saveSlot = '1';
+    int k=0;
+    do{
+            k++;
     do {
         system("cls");
+         if(k>1)printf("there is no saving game in this saving slot\n");
         if (saveSlot - '0' > 3 || saveSlot - '0' <= 0) {
             printf("invalid value");
         }
-        printf("choose saveslot from 1 to 3\n");
+        printf("choose save slot from 1 to 3\n");
         scanf("%c", &saveSlot);
         getchar(); // consume the newline character
     } while (saveSlot - '0' > 3 || saveSlot - '0' <= 0);
@@ -21,6 +25,9 @@ void loadTheGame() {
     } else if (saveSlot == '3') {
         fb = fopen("saveSlot3.bin", "rb");
     }
+    }
+    while(fb=='\0');
+
     char *pb,numericalGameData[100];
     fread(numericalGameData,sizeof(char),100,fb);
     pb=strtok(numericalGameData,",");
