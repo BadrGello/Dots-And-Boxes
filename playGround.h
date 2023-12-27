@@ -44,7 +44,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
         clock_t begin = clock();
         int time_spent=savedTime,t=savedTime/60;
         time_spent-=t*60;
-
+        int carrier=savedTime;
         //int steps[z];
 
         //*************//
@@ -132,9 +132,9 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 else if (strcmp("save",b)==0) //SAVE//
                 {
-                    savedTime = time_spent;
-                    saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
-                    savedTime=0;
+                 savedTime = time_spent;
+                 saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
+                 savedTime=carrier;
                 }
                 else if (strcmp("exit",b)==0)
                 {
@@ -258,9 +258,9 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 else if (strcmp("save",b)==0) //SAVE//
                 {
-                    savedTime = time_spent;
-                    saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
-                    savedTime=0;
+                 savedTime = time_spent;
+                 saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
+                 savedTime=carrier;
                 }
                 else if (strcmp("exit",b)==0)
                 {
