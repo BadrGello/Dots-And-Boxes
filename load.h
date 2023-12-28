@@ -10,7 +10,7 @@ void loadTheGame() {
     do {
         system("cls");
          if(k>1){
-                printf("there is no saving game in this saving slot\nDo you want to return to main menu?(y/n)\n");
+                printf("there is no saving game in this saving slot\nDo you want to return to main menu?\n");
                x=' ';
                 while(x!='y'&&x!='Y'&&x!='n'&&x!='N'){
                 printf("please enter(y/n):");
