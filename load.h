@@ -1,15 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
+#include"mainMenu.h"
 void loadTheGame() {
     FILE *fb;
-    char saveSlot = '1';
+    char saveSlot = '1',x;
     int k=0;
     do{
             k++;
     do {
         system("cls");
-         if(k>1)printf("there is no saving game in this saving slot\n");
+         if(k>1){
+                printf("there is no saving game in this saving slot\nDo you want to return to main menu?(y/n)");
+                 getchar();
+                scanf("%c", &x);
+                if (x == 'y') {
+                    mainMenu();}
+         }
         if (saveSlot - '0' > 3 || saveSlot - '0' <= 0) {
             printf("invalid value");
         }
