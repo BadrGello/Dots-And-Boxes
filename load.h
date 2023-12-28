@@ -3,20 +3,32 @@
 #include<string.h>
 void loadTheGame() {
     FILE *fb;
-    char saveSlot = '1';
+    char saveSlot = '1',x;
     int k=0;
     do{
             k++;
     do {
         system("cls");
-         if(k>1)printf("there is no saving game in this saving slot\n");
-        if (saveSlot - '0' > 3 || saveSlot - '0' <= 0) {
+         if(k>1){
+                printf("there is no saving game in this saving slot\nDo you want to return to main menu?(y/n)\n");
+               x=' ';
+                while(x!='y'&&x!='Y'&&x!='n'&&x!='N'){
+                printf("please enter(y/n):");
+                scanf("%c", &x);
+
+            }
+            }
+                if (x == 'y'||x=='Y'||saveSlot=='r'||saveSlot=='R') {
+                    break;
+                }
+         system("cls");
+        if ((saveSlot - '0' > 3 || saveSlot - '0' <= 0)&&saveSlot!='r'&&saveSlot!='R') {
             printf("invalid value");
         }
-        printf("choose save slot from 1 to 3\n");
+        printf("choose save slot from 1 to 3(press r to return to main menu)\n");
         scanf("%c", &saveSlot);
         getchar(); // consume the newline character
-    } while (saveSlot - '0' > 3 || saveSlot - '0' <= 0);
+    } while ((saveSlot - '0' > 3 || saveSlot - '0' <= 0)&&saveSlot!='r'&&saveSlot!='R');
 
     if (saveSlot == '1') {
         fb = fopen("saveSlot1.bin", "rb");
@@ -25,9 +37,12 @@ void loadTheGame() {
     } else if (saveSlot == '3') {
         fb = fopen("saveSlot3.bin", "rb");
     }
+    if (x == 'y'||x=='Y'||saveSlot=='r'||saveSlot=='R'){
+            break;
     }
-    while(fb=='\0');
-
+    }
+    while(fb==NULL);
+    if(x!='y'&&x!='Y'&&saveSlot!='r'&&saveSlot!='R'){
     char *pb,numericalGameData[100];
     fread(numericalGameData,sizeof(char),100,fb);
     pb=strtok(numericalGameData,",");
@@ -62,4 +77,6 @@ void loadTheGame() {
      system("cls");
     activeplayGround(gameSize,arr,player1,player2,dfsFlag,botFlag,playerTurn,p1Score,p2Score,player1moves,player2moves,z,savedTime);
 
+}
+system("cls");
 }
