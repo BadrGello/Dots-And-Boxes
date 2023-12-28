@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
-#include"mainMenu.h"
 void loadTheGame() {
     FILE *fb;
     char saveSlot = '1',x;
@@ -11,12 +10,14 @@ void loadTheGame() {
     do {
         system("cls");
          if(k>1){
-                printf("there is no saving game in this saving slot\nDo you want to return to main menu?(y/n)");
-                 getchar();
+                printf("there is no saving game in this saving slot\nDo you want to return to main menu?(y/n)\n");
                 scanf("%c", &x);
                 if (x == 'y') {
-                    mainMenu();}
-         }
+                    break;
+                }
+            }
+
+         system("cls");
         if (saveSlot - '0' > 3 || saveSlot - '0' <= 0) {
             printf("invalid value");
         }
@@ -32,9 +33,12 @@ void loadTheGame() {
     } else if (saveSlot == '3') {
         fb = fopen("saveSlot3.bin", "rb");
     }
+    if(x=='y'){
+            break;
     }
-    while(fb=='\0');
-
+    }
+    while(fb==NULL);
+    if(x!='y'){
     char *pb,numericalGameData[100];
     fread(numericalGameData,sizeof(char),100,fb);
     pb=strtok(numericalGameData,",");
@@ -69,4 +73,5 @@ void loadTheGame() {
      system("cls");
     activeplayGround(gameSize,arr,player1,player2,dfsFlag,botFlag,playerTurn,p1Score,p2Score,player1moves,player2moves,z,savedTime);
 
+}
 }

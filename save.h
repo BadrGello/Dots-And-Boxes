@@ -18,7 +18,7 @@ void saveTheGame(int gameSize, char arr[2 * gameSize + 1][2 * gameSize + 1], int
                     break;
                 }
             }
-
+             system("cls");
             if (saveSlot - '0' > 3 || saveSlot - '0' <= 0) {
                 printf("Invalid value\n");
             }
