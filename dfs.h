@@ -1,4 +1,4 @@
-void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,int r2,int c2,int* z,int* moves,int* score){
+void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,int r2,int c2,int* z,int* moves,int* score, int* dfsActive){
     if(r1== r2){
         if(r1!=gameSize+1 && Grid[r1+ r2-3][ c1+ c2-2]!=' '){
             if(Grid[r1+ r2][ c1+ c2-2]==' '&&Grid[r1+ r2-1][ c1+ c2-1]!=' '&&Grid[r1+ r2-1][ c1+ c2-3]!=' '){
@@ -7,7 +7,8 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2][ c1+ c2-2]=Grid[r1+ r2-2][ c1+ c2-2];
              Grid[r1+ r2-1][ c1+ c2-2]=Grid[r1+ r2-3][ c1+ c2-2];
-             openChain(gameSize,Grid,r1+1,c1,r2+1,c2,z,moves,score);
+             *dfsActive=1;
+             openChain(gameSize,Grid,r1+1,c1,r2+1,c2,z,moves,score,dfsActive);
             }
             else if(Grid[r1+ r2][ c1+ c2-2]!=' '&&Grid[r1+ r2-1][ c1+ c2-1]==' '&&Grid[r1+ r2-1][ c1+ c2-3]!=' '){
              (*z)--;
@@ -15,8 +16,9 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2-1][ c1+ c2-1]=Grid[r1+ r2-2][ c1+ c2-2]-1;
              Grid[r1+ r2-1][ c1+ c2-2]=Grid[r1+ r2-3][ c1+ c2-2];
-             if( c1> c2)   openChain(gameSize,Grid,r1,c1,r2+1,c1,z,moves,score);
-             else  openChain(gameSize,Grid,r1,c2,r2+1,c2,z,moves,score);
+             *dfsActive=1;
+             if( c1> c2)   openChain(gameSize,Grid,r1,c1,r2+1,c1,z,moves,score,dfsActive);
+             else  openChain(gameSize,Grid,r1,c2,r2+1,c2,z,moves,score,dfsActive);
             }
             else if(Grid[r1+ r2][ c1+ c2-2]!=' '&&Grid[r1+ r2-1][ c1+ c2-1]!=' '&&Grid[r1+ r2-1][ c1+ c2-3]==' ') {
              (*z)--;
@@ -25,8 +27,9 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              Grid[r1+ r2-1][ c1+ c2-3]=Grid[r1+ r2-2][ c1+ c2-2]-1;
              Grid[r1+ r2-1][ c1+ c2-2]=Grid[r1+ r2-3][ c1+ c2-2];
              ( r2)++;
-             if( c1> c2)  openChain(gameSize,Grid,r1,c2,r2+1,c2,z,moves,score);
-             else   openChain(gameSize,Grid,r1,c1,r2+1,c1,z,moves,score);
+             *dfsActive=1;
+             if( c1> c2)  openChain(gameSize,Grid,r1,c2,r2+1,c2,z,moves,score,dfsActive);
+             else   openChain(gameSize,Grid,r1,c1,r2+1,c1,z,moves,score,dfsActive);
             }
         }
         else if(r1!=1 &&Grid[r1+ r2-1][ c1+ c2-2]!=' '){
@@ -38,7 +41,8 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              Grid[r1+ r2-3][ c1+ c2-2]=Grid[r1+ r2-3][ c1+ c2-2];
              (r1)--;
              ( r2)--;
-             openChain(gameSize,Grid,r1-1,c1,r2-1,c2,z,moves,score);
+             *dfsActive=1;
+             openChain(gameSize,Grid,r1-1,c1,r2-1,c2,z,moves,score,dfsActive);
             }
             else if(Grid[r1+ r2-4][ c1+ c2-2]!=' '&&Grid[r1+ r2-3][ c1+ c2-1]==' '&&Grid[r1+ r2-3][ c1+ c2-3]!=' '){
              (*z)--;
@@ -46,8 +50,9 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2-3][ c1+ c2-1]=Grid[r1+ r2-2][ c1+ c2-2]-1;
              Grid[r1+ r2-3][ c1+ c2-2]=Grid[r1+ r2-3][ c1+ c2-2];
-             if( c1> c2)   openChain(gameSize,Grid,r1,c1,r2-1,c1,z,moves,score);
-             else  openChain(gameSize,Grid,r1,c2,r2-1,c2,z,moves,score);
+             *dfsActive=1;
+             if( c1> c2)   openChain(gameSize,Grid,r1,c1,r2-1,c1,z,moves,score,dfsActive);
+             else  openChain(gameSize,Grid,r1,c2,r2-1,c2,z,moves,score,dfsActive);
             }
             else if(Grid[r1+ r2-4][ c1+ c2-2]!=' '&&Grid[r1+ r2-3][ c1+ c2-1]!=' '&&Grid[r1+ r2-3][ c1+ c2-3]==' '){
              (*z)--;
@@ -55,8 +60,9 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2-3][ c1+ c2-3]=Grid[r1+ r2-2][ c1+ c2-2]-1;
              Grid[r1+ r2-3][ c1+ c2-2]=Grid[r1+ r2-3][ c1+ c2-2];
-             if( c1> c2)   openChain(gameSize,Grid,r1,c2,r2-1,c2,z,moves,score);
-             else   openChain(gameSize,Grid,r1,c1,r2-1,c1,z,moves,score);
+             *dfsActive=1;
+             if( c1> c2)   openChain(gameSize,Grid,r1,c2,r2-1,c2,z,moves,score,dfsActive);
+             else   openChain(gameSize,Grid,r1,c1,r2-1,c1,z,moves,score,dfsActive);
             }
         }
     }
@@ -68,7 +74,8 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2-2][ c1+ c2-4]=Grid[r1+ r2-2][ c1+ c2-2];
              Grid[r1+ r2-2][ c1+ c2-3]=Grid[r1+ r2-2][ c1+ c2-1];
-             openChain(gameSize,Grid,r1,c1-1,r2,c2-1,z,moves,score);
+             *dfsActive=1;
+             openChain(gameSize,Grid,r1,c1-1,r2,c2-1,z,moves,score,dfsActive);
             }
             else if(Grid[r1+ r2-2][ c1+ c2-4]!=' '&&Grid[r1+ r2-1][ c1+ c2-3]!=' '&&Grid[r1+ r2-3][ c1+ c2-3]==' '){
              (*z)--;
@@ -76,8 +83,9 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2-3][ c1+ c2-3]=Grid[r1+ r2-2][ c1+ c2-2]+1;
              Grid[r1+ r2-2][ c1+ c2-3]=Grid[r1+ r2-2][ c1+ c2-1];
-             if(r1> r2) openChain(gameSize,Grid,r2,c1-1,r2,c2,z,moves,score);
-             else  openChain(gameSize,Grid,r1,c1-1,r1,c2,z,moves,score);
+             *dfsActive=1;
+             if(r1> r2) openChain(gameSize,Grid,r2,c1-1,r2,c2,z,moves,score,dfsActive);
+             else  openChain(gameSize,Grid,r1,c1-1,r1,c2,z,moves,score,dfsActive);
 
             }
             else if(Grid[r1+ r2-2][ c1+ c2-4]!=' '&&Grid[r1+ r2-1][ c1+ c2-3]==' '&&Grid[r1+ r2-3][ c1+ c2-3]!=' '){
@@ -86,8 +94,9 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2-1][ c1+ c2-3]=Grid[r1+ r2-2][ c1+ c2-2]+1;
              Grid[r1+ r2-2][ c1+ c2-3]=Grid[r1+ r2-2][ c1+ c2-1];
-             if(r1> r2) openChain(gameSize,Grid,r1,c1-1,r1,c2,z,moves,score);
-             else openChain(gameSize,Grid,r2,c1-1,r2,c2,z,moves,score);
+             *dfsActive=1;
+             if(r1> r2) openChain(gameSize,Grid,r1,c1-1,r1,c2,z,moves,score,dfsActive);
+             else openChain(gameSize,Grid,r2,c1-1,r2,c2,z,moves,score,dfsActive);
             }
       }
       else if( c1!=gameSize+1&& Grid[r1+ r2-2][ c1+ c2-3!=' ']){
@@ -97,7 +106,8 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2-2][ c1+ c2]=Grid[r1+ r2-2][ c1+ c2-2];
              Grid[r1+ r2-2][ c1+ c2-1]=Grid[r1+ r2-2][ c1+ c2-3];
-            openChain(gameSize,Grid,r1,c1+1,r2,c2+1,z,moves,score);
+             *dfsActive=1;
+            openChain(gameSize,Grid,r1,c1+1,r2,c2+1,z,moves,score,dfsActive);
              }
             else if(Grid[r1+ r2-2][ c1+ c2]!=' '&&Grid[r1+ r2-1][ c1+ c2-1]==' '&&Grid[r1+ r2-3][ c1+ c2-1]!=' '){
              ( *z)--;
@@ -105,8 +115,9 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2-3][ c1+ c2-1]=Grid[r1+ r2-2][ c1+ c2-2]+1;
              Grid[r1+ r2-2][ c1+ c2-1]=Grid[r1+ r2-2][ c1+ c2-3];
-             if(r1> r2)      openChain(gameSize,Grid,r1,c1+1,r1,c2,z,moves,score);
-             else        openChain(gameSize,Grid,r2,c1+1,r2,c2,z,moves,score);
+             *dfsActive=1;
+             if(r1> r2)      openChain(gameSize,Grid,r1,c1+1,r1,c2,z,moves,score,dfsActive);
+             else        openChain(gameSize,Grid,r2,c1+1,r2,c2,z,moves,score,dfsActive);
             }
             else if(Grid[r1+ r2-2][ c1+ c2]!=' '&&Grid[r1+ r2-1][ c1+ c2-1]!=' '&&Grid[r1+ r2-3][ c1+ c2-1]==' '){
              (*z)--;
@@ -114,8 +125,9 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2-3][ c1+ c2-1]=Grid[r1+ r2-2][ c1+ c2-2]+1;
              Grid[r1+ r2-2][ c1+ c2-1]=Grid[r1+ r2-2][ c1+ c2-3];
-             if(r1> r2)  openChain(gameSize,Grid,r2,c1+1,r2,c2,z,moves,score);
-             else   openChain(gameSize,Grid,r1,c1+1,r1,c2,z,moves,score);
+             *dfsActive=1;
+             if(r1> r2)  openChain(gameSize,Grid,r2,c1+1,r2,c2,z,moves,score,dfsActive);
+             else   openChain(gameSize,Grid,r1,c1+1,r1,c2,z,moves,score,dfsActive);
             }
       }
     }
@@ -165,7 +177,9 @@ else if(c1==c2&&c1==gameSize+1) y=0;
 int r=(x*y*z*w);
 return r;
 }
-void chainOfBoxes(int gameSize,char Grid[2*gameSize+1][2*gameSize+1],int r1,int c1,int r2,int c2,int* z,int* moves,int* score){
+
+
+void chainOfBoxes(int gameSize,char Grid[2*gameSize+1][2*gameSize+1],int r1,int c1,int r2,int c2,int* z,int* moves,int* score, int* dfsActive){
     int i,j;
 if(dfs(gameSize,Grid,r1,c1,r2,c2)){
     for(i=0;i<=2*gameSize;i++){
@@ -181,7 +195,7 @@ if(dfs(gameSize,Grid,r1,c1,r2,c2)){
             if(Grid[i][j-1]==' ') {
                     Grid[i][j-1]='2';
                     (*z)--;
-                   (*moves)++;
+                    (*moves)++;
             }
             if(Grid[i+1][j]==' ') {
                     Grid[i+1][j]='3';
@@ -199,11 +213,13 @@ if(dfs(gameSize,Grid,r1,c1,r2,c2)){
             if(Grid[i][j+1]==' ') {
                     Grid[i][j+1]='4';
                     (*z)--;
-                    (*moves)++;}
+                    (*moves)++;
+            }
             if(Grid[i][j-1]==' ') {
                     Grid[i][j-1]='4';
                     (*z)--;
-                    (*moves)++;}
+                    (*moves)++;
+            }
             if(Grid[i+1][j]==' ') {
                     Grid[i+1][j]='5';
                     (*z)--;
@@ -219,6 +235,8 @@ if(dfs(gameSize,Grid,r1,c1,r2,c2)){
             }
         }
     }
+
+*dfsActive=1;
 }
 else{
         for(i=0;i<=2*gameSize;i++){
@@ -228,6 +246,8 @@ else{
             }
         }
     }
- openChain(gameSize,Grid,r1,c1,r2,c2,z,moves,score);
+openChain(gameSize,Grid,r1,c1,r2,c2,z,moves,score,dfsActive);
 }
 }
+
+

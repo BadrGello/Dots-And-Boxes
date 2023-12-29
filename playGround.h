@@ -58,8 +58,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
             int undoRedoCheck=-1;
             int currentMove=0;
             int lastMove=0;
-
-            int dfsActive;
+            int dfsActive=0;
 
 
         int EXIT=0;
@@ -75,6 +74,8 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
             undoRedoCheck=0;
             winChecker1=0;
             winChecker2=0;
+            dfsActive=0;
+
             //printing the time
             printf("Time Spent %d:%d\n",t,time_spent);
             //printing the score and the moves
@@ -217,7 +218,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 if(p1Score>l) {
 
                         z--;
-                        if (dfsFlag==1) chainOfBoxes(gameSize,Grid,r1,c1,r2,c2,&z,&player1Moves,&p1Score);
+                        if (dfsFlag==1) chainOfBoxes(gameSize,Grid,r1,c1,r2,c2,&z,&player1Moves,&p1Score,&dfsActive);
                         undoRedo(0, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z , r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, &currentMove, &lastMove, steps, botFlag, dfsActive);
 
                         system( "cls" );
@@ -332,7 +333,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 if(p2Score>t) {
                         z--;
-                        if (dfsFlag==1) chainOfBoxes(gameSize,Grid,r1,c1,r2,c2,&z,&player1Moves,&p1Score);
+                        if (dfsFlag==1) chainOfBoxes(gameSize,Grid,r1,c1,r2,c2,&z,&player1Moves,&p1Score,&dfsActive);
                         undoRedo(0, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z , r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, &currentMove, &lastMove, steps, botFlag, dfsActive);
 
                         system( "cls" );

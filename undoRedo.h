@@ -14,10 +14,10 @@ typedef struct
     int moveChecker;
     int winChecker1;
     int winChecker2;
+    int dfsActive;
+    //char Grid[20][20];
 
-}stepInfoStruct;
-
-
+} stepInfoStruct;
 
 
 void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSize*2 + 1], int *playerTurn, int *p1Score, int *p2Score, int *player1Moves, int *player2Moves, int *remMoves, int r1, int c1, int r2, int c2, int moveChecker, int winChecker1, int winChecker2, int *currentMove, int *lastMove, stepInfoStruct steps[], int botFlag, int dfsActive)
@@ -28,9 +28,10 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
 
     if(undoRedoCheck==0 && moveChecker!=0)
     {
+        /*if(steps[*currentMove].dfsActive==1)
+        {
         *currentMove=*currentMove+1;
         *lastMove=*currentMove;
-
         steps[*currentMove].playerTurn=*playerTurn;
         steps[*currentMove].p1Score=*p1Score;
         steps[*currentMove].p2Score=*p2Score;
@@ -44,6 +45,33 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
         steps[*currentMove].moveChecker=moveChecker;
         steps[*currentMove].winChecker1=winChecker1;
         steps[*currentMove].winChecker2=winChecker2;
+        for(int i=0;i<2*gameSize+1;i++)
+            for(int j=0;j<2*gameSize+1;j++)
+            {
+                steps[*currentMove].Grid[i][j]=Grid[i][j];
+            }
+
+        }*/
+        //else
+        {
+
+        *currentMove=*currentMove+1;
+        *lastMove=*currentMove;
+        steps[*currentMove].playerTurn=*playerTurn;
+        steps[*currentMove].p1Score=*p1Score;
+        steps[*currentMove].p2Score=*p2Score;
+        steps[*currentMove].player1Moves=*player1Moves;
+        steps[*currentMove].player2Moves=*player2Moves;
+        steps[*currentMove].remMoves=*remMoves;
+        steps[*currentMove].r1=r1;
+        steps[*currentMove].c1=c1;
+        steps[*currentMove].r2=r2;
+        steps[*currentMove].c2=c2;
+        steps[*currentMove].moveChecker=moveChecker;
+        steps[*currentMove].winChecker1=winChecker1;
+        steps[*currentMove].winChecker2=winChecker2;
+
+        }
 
         //printf("undoRedoCheck==0 Success\n");
         //printf("%d, %d, %d, %d, %d, %d, %d, %d, %d, %d\n",steps[*currentMove].playerTurn,steps[*currentMove].p1Score,steps[*currentMove].p2Score,steps[*currentMove].player1Moves,steps[*currentMove].player2Moves,steps[*currentMove].remMoves,steps[*currentMove].r1,steps[*currentMove].c1,steps[*currentMove].r2,steps[*currentMove].c2  );
@@ -71,6 +99,15 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
     {
         do
         {
+            /*if(steps[*currentMove].dfsActive==1)
+            {
+
+
+
+            }*/
+
+            //else
+            {
             *currentMove=*currentMove-1;
             *playerTurn=steps[*currentMove].playerTurn; //current moves+1
             *p1Score=steps[*currentMove].p1Score;
@@ -117,7 +154,7 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
             default: break;
         }
         system("cls");
-
+        }
         } while(steps[*currentMove].playerTurn!=1 && *currentMove>0 && botFlag==1);
     }
 
@@ -170,3 +207,7 @@ void undoRedo(int undoRedoCheck, int gameSize, char Grid[gameSize*2 + 1][gameSiz
     else if(undoRedoCheck==2 && *currentMove>=*lastMove) {system("cls"); printf("\033[0;35mCan't Redo Any Further\n\033[0m");}
 
 }
+
+
+//undoRedo(undoRedoCheck=0, gameSize, Grid, *playerTurn=1, *p1Score, /* *p2Score*/, *player1Moves, /* *player2Moves*/, *remMoves, r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, *currentMove, *lastMove, steps[], botFlag, dfsActive=1):
+//undoRedo(undoRedoCheck=0, gameSize, Grid, *playerTurn=2, /* *p1Score*/, *p2Score, /* *player1Moves*/, *player2Moves, *remMoves, r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, *currentMove, *lastMove, steps[], botFlag, dfsActive=1):
