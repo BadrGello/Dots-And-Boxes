@@ -174,10 +174,10 @@ else if(c1==c2&&Grid[r1+r2-2][c1+c2-3]==' '&&c1!=1){
        Grid[r1+r2-2][c1+c2-3]='9';
        if(Grid[r1+r2-2][c1+c2-4]!=' ') z=1;
        else x=dfs(gameSize,Grid,r1,c1-1,r2,c2-1);
-       if(Grid[r2+r2-2][c2+c2-3]!=' ') x=1;
-       else y=dfs(gameSize,Grid,r2,c1-1,r2,c2);
-       if(Grid[r1+r1-2][c1+c1-3]!=' ') w=1;
-       else z=dfs(gameSize,Grid,r1,c2-1,r1,c1);
+       if(Grid[r2+r2-2][c2+c1-3]!=' ') {x=1; exit(0);}
+       else x=dfs(gameSize,Grid,r2,c1-1,r2,c2);
+      // if(Grid[r1+r1-2][c1+c2-3]!=' ') w=1;
+      // else w=dfs(gameSize,Grid,r1,c2-1,r1,c1);
 }
 else if(c1==c2&&c1==1) z=0;
 else if(c1==c2&&Grid[r1+r2-2][c1+c2-1]==' '&&c1!=gameSize+1){
@@ -198,6 +198,7 @@ return r;
 void chainOfBoxes(int gameSize,char Grid[2*gameSize+1][2*gameSize+1],int r1,int c1,int r2,int c2,int* z,int* moves,int* score,     int *currentMove, int *lastMove, stepInfoStruct steps[], int botFlag, int dfsActive,    int *playerTurn){
     int i,j;
 if(dfs(gameSize,Grid,r1,c1,r2,c2)){
+
     for(i=0;i<=2*gameSize;i++){
         for(j=0;j<=2*gameSize;j++){
             if(Grid[i][j]=='9'){
