@@ -1,3 +1,7 @@
+#ifndef SAVE_H
+#define SAVE_H
+
+
 #include<stdio.h>
 #include<stdlib.h>
 void saveTheGame(int gameSize, char arr[2 * gameSize + 1][2 * gameSize + 1], int playerTurn, char player1[256], char player2[256], int p1Score, int p2Score, int player1Moves, int player2Moves, int z, int dfsFlag, int botFlag, int savedTime) {
@@ -63,3 +67,6 @@ void saveTheGame(int gameSize, char arr[2 * gameSize + 1][2 * gameSize + 1], int
     fclose(fb2);
 }
 }
+
+
+#endif

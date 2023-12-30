@@ -1,3 +1,7 @@
+#ifndef READLINE_H
+#define READLINE_H
+
+
 #include <ctype.h>
 
 void readLine(char str[], int n)
@@ -31,3 +35,5 @@ void readLine(char str[], int n)
     }
     str[i] = '\0'; //sets the last element to be null (to make it a string)
 }
+
+#endif
