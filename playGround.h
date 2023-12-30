@@ -8,6 +8,8 @@
 #include "botRandom.h"
 #include "save.h"
 #include "undoRedo.h"
+#include"readLine.h"
+#include"mainMenu.h"
 #define size 256
 void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1] ,char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z,int savedTime );
 void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, if = 1, it's enabled
@@ -26,12 +28,12 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
     int playerTurn=1;
     char player1[256],player2[256]; //holds the players names
     printf("\033[0;34mPlayer1, enter your name:\033[0m "); //player 1 is blue
-    scanf("%s",player1);
+    readLine(player1,256);
     system("cls");
     if(botFlag==1){strcpy(player2, "Computer");} //if not bot, it'll scanf for player 2 name instead
     else{
     printf("\033[0;31mPlayer2, enter your name:\033[0m "); //player 2 is red
-    scanf("%s",player2);
+    readLine(player2,256);
     system("cls");}
     int savedTime=0;
 
@@ -380,9 +382,19 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 printf("\n");
             }
             printf("\n");
-        if(p1Score>p2Score) printf("\033[0;34m%s wins\033[0m ",player1);
-        else if(p2Score>p1Score) printf("\033[0;31m%s wins\033[0m ",player2);
-        else   printf("Draw");
+        if(p1Score>p2Score) printf("\033[0;34m%s wins\033[0m \n",player1);
+        else if(p2Score>p1Score) printf("\033[0;31m%s wins\033[0m \n",player2);
+        else   printf("Draw\n");
+        char answer[4];
+        printf("Do you want to go to main menu?\n");
+        while(strcmp(answer,"yes")!=0&&strcmp(answer,"Yes")!=0&&strcmp(answer,"no")!=0&&strcmp(answer,"No")!=0){
+        scanf("%s",answer);
+        if(strcmp(answer,"yes")==0||strcmp(answer,"Yes")==0) mainMenu();
+        else if(strcmp(answer,"no")==0||strcmp(answer,"No")==0) exit(0);
+        system("cls");
+        printf("please enter (y/n)\n");
+
+}
 }
 
 
