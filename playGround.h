@@ -337,7 +337,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 if(p2Score>t) {
                         z--;
-                        if (dfsFlag==1) chainOfBoxes(gameSize,Grid,r1,c1,r2,c2,&z,&player1Moves,&p1Score, &currentMove, &lastMove, steps, botFlag, dfsActive, &playerTurn);
+                        if (dfsFlag==1) chainOfBoxes(gameSize,Grid,r1,c1,r2,c2,&z,&player2Moves,&p2Score, &currentMove, &lastMove, steps, botFlag, dfsActive, &playerTurn);
                         undoRedo(0, gameSize, Grid, &playerTurn, &p1Score, &p2Score, &player1Moves, &player2Moves, &z , r1, c1, r2, c2, moveChecker, winChecker1, winChecker2, &currentMove, &lastMove, steps, botFlag, dfsActive);
 
                         system( "cls" );
