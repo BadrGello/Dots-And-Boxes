@@ -70,7 +70,7 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              Grid[r1+ r2-3][ c1+ c2-3]=Grid[r1+ r2-2][ c1+ c2-2]-1;
              Grid[r1+ r2-3][ c1+ c2-2]=Grid[r1+ r2-1][ c1+ c2-2];
              ////
-             undoRedo(/*undoRedoCheck=*/0, gameSize, Grid, playerTurn, score, /* *p2Score=*/score, moves, /*player2Moves*/moves, z, r1+ r2-3,  c1+ c2-3, r1+ r2-1, c1+ c2-2, /*moveChecker=*/Grid[r1+ r2-3][ c1+ c2-3]-'0', /*winChecker1=*/Grid[r1+ r2-3][ c1+ c2-2]-'0', /*winChecker2=*/0, currentMove, lastMove, steps, botFlag, dfsActive=1);
+             undoRedo(/*undoRedoCheck=*/0, gameSize, Grid, playerTurn, score, /* *p2Score=*/score, moves, /*player2Moves*/moves, z, r1+ r2-3,  c1+ c2-3, r1+ r2-3, c1+ c2-2, /*moveChecker=*/Grid[r1+ r2-3][ c1+ c2-3]-'0', /*winChecker1=*/Grid[r1+ r2-3][ c1+ c2-2]-'0', /*winChecker2=*/0, currentMove, lastMove, steps, botFlag, dfsActive=1);
              if( c1> c2)   openChain(gameSize,Grid,r1,c2,r2-1,c2,z,moves,score,  currentMove, lastMove, steps, botFlag, dfsActive, playerTurn);
              else   openChain(gameSize,Grid,r1,c1,r2-1,c1,z,moves,score,  currentMove, lastMove, steps, botFlag, dfsActive, playerTurn);
             }
