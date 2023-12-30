@@ -1,3 +1,6 @@
+#ifndef LOAD_H
+#define LOAD_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
@@ -80,3 +83,6 @@ void loadTheGame() {
 }
 system("cls");
 }
+
+
+#endif

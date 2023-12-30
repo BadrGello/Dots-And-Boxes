@@ -1,3 +1,8 @@
+#ifndef MAINMENU_H
+#define MAINMENU_H
+
+
+
 #include "readLine.h"
 #include "playGround.h"
 #include "load.h"
@@ -121,3 +126,6 @@ void mainMenu(){
         }
     }
 }
+
+
+#endif
