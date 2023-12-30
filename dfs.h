@@ -174,7 +174,7 @@ else if(c1==c2&&Grid[r1+r2-2][c1+c2-3]==' '&&c1!=1){
        Grid[r1+r2-2][c1+c2-3]='9';
        if(Grid[r1+r2-2][c1+c2-4]!=' ') z=1;
        else x=dfs(gameSize,Grid,r1,c1-1,r2,c2-1);
-       if(Grid[r2+r2-2][c2+c1-3]!=' ') {x=1; exit(0);}
+       if(Grid[r2+r2-2][c2+c1-3]!=' ') {x=1; }
        else x=dfs(gameSize,Grid,r2,c1-1,r2,c2);
        if(Grid[r1+r1-2][c1+c2-3]!=' ') w=1;
        else w=dfs(gameSize,Grid,r1,c2-1,r1,c1);
