@@ -386,8 +386,8 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
         else if(p2Score>p1Score) printf("\033[0;31m%s wins\033[0m \n",player2);
         else   printf("Draw\n");
         char answer[4];
-        printf("Do you want to go to main menu?\n");
         while(strcmp(answer,"yes")!=0&&strcmp(answer,"Yes")!=0&&strcmp(answer,"no")!=0&&strcmp(answer,"No")!=0){
+        printf("Do you want to go to main menu?\n");
         scanf("%s",answer);
         if(strcmp(answer,"yes")==0||strcmp(answer,"Yes")==0) mainMenu();
         else if(strcmp(answer,"no")==0||strcmp(answer,"No")==0) exit(0);
