@@ -10,9 +10,16 @@
 #include "readLine.h"
 #include "mainMenu.h"
 #include "rank.h"
+#define Red "\033[0;31m"
+#define Green "\033[0;32m"
+#define Yellow "\033[0;33m"
+#define Blue "\033[0;34m"
+#define Purple "\033[0;35m"
+#define Cyan "\033[0;36m"
+#define colorEscape "\033[0m"
 
 //#define size 256
-void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1] ,char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z,int savedTime );
+void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1] ,char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z,int savedTime,char p1Color[20],char p2Color[20] );
 void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, if = 1, it's enabled
 {
     int i,j;
@@ -31,38 +38,65 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
     char p1Color[20],p2Color[20]; //holds player's colors
     while (1)
     {
-        printf("Player 1, Choose Your Color: 1 2 3 4\n");
+        printf("Player 1, Choose Your Color:\n");
+        printf(Blue"blue\n"colorEscape);
+        printf(Purple"purple\n"colorEscape);
+        printf(Cyan"cyan\n"colorEscape);
         readLine(p1Color,20);
-        if (strcmp(p1Color, "red")==0 || strcmp(p1Color, "")==0 || strcmp(p1Color, "")==0 || strcmp(p1Color, "")==0) break;
+        if (strcmp(p1Color, "blue")==0||strcmp(p1Color, "b")==0||strcmp(p1Color, "1")==0 ) {
+                 strcpy(p1Color,Blue);
+                break;
+        }
+          else if( strcmp(p1Color,"purple")==0||strcmp(p1Color,"p")==0||strcmp(p1Color,"2")==0){
+              strcpy(p1Color,Purple);
+              break;
+           }
+           else if ( strcmp(p1Color, "cyan")==0 ||strcmp(p1Color, "c")==0 ||strcmp(p1Color, "3")==0 ) {
+                strcpy(p1Color,Cyan);
+                break;
+           }
         else {system("cls"); printf("Invaled Value\n");}
 
     }
     system("cls");
     while (1)
     {
-        printf("Player 2, Choose Your Color: 5 6 7 8\n");
+        printf("Player 2, Choose Your Color: \n");
+        printf(Red"red\n"colorEscape);
+        printf(Green"green\n"colorEscape);
+        printf(Yellow"yellow\n"colorEscape);
         readLine(p2Color,20);
-        if (strcmp(p2Color, "blue")==0 || strcmp(p2Color, "")==0 || strcmp(p2Color, "")==0 || strcmp(p2Color, "")==0) break;
+        if (strcmp(p2Color, "red")==0 || strcmp(p2Color, "r")==0 || strcmp(p2Color, "1")==0 ){
+                strcpy(p2Color,Red);
+                break;
+        }
+        if (strcmp(p2Color, "g")==0 || strcmp(p2Color, "green")==0 || strcmp(p2Color, "2")==0 ){
+            strcpy(p2Color,Green);
+            break;
+        }
+        if (strcmp(p2Color, "p")==0 || strcmp(p2Color, "3")==0 || strcmp(p2Color, "yellow")==0 ){
+            strcpy(p2Color,Yellow);
+            break;
+        }
         else {system("cls"); printf("Invaled Value\n");}
     }
     system("cls");
-
-    printf("\033[0;34mPlayer1, Enter your name:\033[0m "); //player 1 is blue
+    printf("%sPlayer1, Enter your name: "colorEscape,p1Color); //player 1 is blue
     readLine(player1,256);
     system("cls");
     if(botFlag==1){strcpy(player2, "Computer");} //if not bot, it'll scanf for player 2 name instead
     else{
-    printf("\033[0;31mPlayer2, Enter your name:\033[0m "); //player 2 is red
+    printf("%sPlayer2, Enter your name: "colorEscape,p2Color); //player 2 is red
     readLine(player2,256);
     system("cls");}
     int savedTime=0;
 
     char options[100];
-    activeplayGround( gameSize,Grid,player1,player2, dfsFlag,  botFlag,playerTurn,p1Score,p2Score,player1Moves,player2Moves,z,savedTime);
+    activeplayGround( gameSize,Grid,player1,player2, dfsFlag,  botFlag,playerTurn,p1Score,p2Score,player1Moves,player2Moves,z,savedTime,p1Color,p2Color);
 
 }
 
-void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z ,int savedTime)
+void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z ,int savedTime,char p1Color[20],char p2Color[20])
 {
 
         int r1,c1,r2,c2;
@@ -105,10 +139,10 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
             //printing the time
             printf("Time Spent %d:%d\n",t,time_spent);
             //printing the score and the moves
-            printf(" \033[0;34m%s's Score :%d\033[0m           ",player1,p1Score);
-            printf(" \033[0;31m%s's Score :%d\033[0m \n",player2,p2Score);
-            printf(" \033[0;34m%s Played :%d Moves\033[0m      ",player1,player1Moves);
-            printf(" \033[0;31m%s Played :%d Moves\033[0m \n",player2,player2Moves);
+            printf(" %s%s's Score :%d\033[0m           ",p1Color,player1,p1Score);
+            printf(" %s%s's Score :%d\033[0m \n",p2Color,player2,p2Score);
+            printf(" %s%s Played :%d Moves\033[0m      ",p1Color,player1,player1Moves);
+            printf(" %s%s Played :%d Moves\033[0m \n",p2Color,player2,player2Moves);
             printf("Remaining Moves:%d\n",z);
             int l=p1Score,t=p2Score;
             //Printing The Grid
@@ -128,12 +162,12 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 for(int j=0;j<gameSize*2 + 1;j++)
                     {
                         if ((Grid[i][j]==' ')||(Grid[i][j]=='.')) printf("%c ",Grid[i][j]);
-                        else if(Grid[i][j]=='2') printf("\033[0;34m|\033[0m ");
-                        else if(Grid[i][j]=='3') printf("\033[0;34m_\033[0m ");
-                        else if(Grid[i][j]=='6') printf("\033[0;34m#\033[0m ");
-                        else if(Grid[i][j]=='4') printf("\033[0;31m|\033[0m ");
-                        else if(Grid[i][j]=='5') printf("\033[0;31m_\033[0m ");
-                        else if(Grid[i][j]=='7') printf("\033[0;31m#\033[0m ");
+                        else if(Grid[i][j]=='2') printf("%s|\033[0m ",p1Color);
+                        else if(Grid[i][j]=='3') printf("%s_\033[0m ",p1Color);
+                        else if(Grid[i][j]=='6') printf("%s#\033[0m ",p1Color);
+                        else if(Grid[i][j]=='4') printf("%s|\033[0m ",p2Color);
+                        else if(Grid[i][j]=='5') printf("%s_\033[0m ",p2Color);
+                        else if(Grid[i][j]=='7') printf("%s#\033[0m ",p2Color);
                     }
                 printf("\n");
             }
@@ -151,7 +185,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
             {
                 //Start: Scanning and handling in game options//
                 printf("Undo  Redo  Save  Exit\n");
-                printf(" \033[0;34m%s's Turn : \033[0m",player1);
+                printf(" %s%s's Turn : \033[0m",p1Color,player1);
                 int i=0;
                 for(i=0;i<4;i++)
                 {
@@ -178,7 +212,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 else if (strcmp("save",b)==0) //SAVE//
                 {
                  savedTime = time_spent;
-                 saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
+                 saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime,p1Color,p2Color);
                  savedTime=carrier;
                 }
                 else if (strcmp("exit",b)==0)
@@ -271,7 +305,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 if (botFlag==0){
                 //Start: Scanning and handling in game options//
                 printf("Undo  Redo  Save  Exit\n");
-                printf(" \033[0;31m%s's Turn : \033[0m",player2);
+                printf(" %s%s's Turn : \033[0m",p1Color,player2);
                 int i=0;
                 for(i=0;i<4;i++)
                 {
@@ -295,7 +329,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 else if (strcmp("save",b)==0) //SAVE//
                 {
                  savedTime = time_spent;
-                 saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime);
+                 saveTheGame(gameSize,Grid,playerTurn,player1,player2,p1Score,p2Score,player1Moves,player2Moves, z,dfsFlag,botFlag, savedTime,p1Color,p2Color);
                  savedTime=carrier;
                 }
                 else if (strcmp("exit",b)==0)

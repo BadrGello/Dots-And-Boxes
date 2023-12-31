@@ -6,26 +6,18 @@
 #include<string.h>
 void loadTheGame() {
     FILE *fb;
-    char saveSlot = '1',x;
+    char saveSlot = '1';
     int k=0;
     do{
             k++;
     do {
          system("cls");
          if(k>1){
-                printf("There is no saved game in this saving slot\nDo you want to return to main menu?\n");
-                x=' ';
-                while(x!='y'&&x!='Y'&&x!='n'&&x!='N'){
-                printf("Please Enter(y/n):");
-                scanf("%c", &x);
-                //getchar();
-
+                printf("There is no saved game in this saving slot please try again\n");
             }
-            }
-                if (x == 'y'||x=='Y'||saveSlot=='r'||saveSlot=='R') {
+                if (saveSlot=='r'||saveSlot=='R') {
                     break;
                 }
-         system("cls");
         if ((saveSlot - '0' > 3 || saveSlot - '0' <= 0)&&saveSlot!='r'&&saveSlot!='R') {
             printf("Invalid Value\n");
         }
@@ -41,12 +33,12 @@ void loadTheGame() {
     } else if (saveSlot == '3') {
         fb = fopen("saveSlot3.bin", "rb");
     }
-    if (x == 'y'||x=='Y'||saveSlot=='r'||saveSlot=='R'){
+    if (saveSlot=='r'||saveSlot=='R'){
             break;
     }
     }
     while(fb==NULL);
-    if(x!='y'&&x!='Y'&&saveSlot!='r'&&saveSlot!='R'){
+    if(saveSlot!='r'&&saveSlot!='R'){
     char *pb,numericalGameData[100];
     fread(numericalGameData,sizeof(char),100,fb);
     pb=strtok(numericalGameData,",");
@@ -74,12 +66,14 @@ void loadTheGame() {
     for (i = 0; i <= 2 * gameSize; i++) {
         fread(arr[i], sizeof(char), 2 * gameSize + 1, fb);
     }
-    char player1[256], player2[256];
+    char player1[256], player2[256],p1Color[20],p2Color[20];
     fread(player1, sizeof(char), 256, fb);
     fread(player2, sizeof(char), 256, fb);
+    fread(p1Color, sizeof(char), 20, fb);
+    fread(p2Color, sizeof(char), 20, fb);
     fclose(fb);
     system("cls");
-    activeplayGround(gameSize,arr,player1,player2,dfsFlag,botFlag,playerTurn,p1Score,p2Score,player1moves,player2moves,z,savedTime);
+    activeplayGround(gameSize,arr,player1,player2,dfsFlag,botFlag,playerTurn,p1Score,p2Score,player1moves,player2moves,z,savedTime,p1Color,p2Color);
 
 }
 system("cls");
