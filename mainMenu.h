@@ -1,11 +1,11 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-
-
 #include "readLine.h"
 #include "playGround.h"
 #include "load.h"
+#include "rank.h"
+
 void mainMenu(){
     int gameSize;
     char menu[100];
@@ -15,7 +15,7 @@ void mainMenu(){
 
         printf("Start Game\nLoad Game\nLeaderboard\nExit\n");
         readLine(menu,100); //readLine function do as follows: 1)Skips all leading whitespaces 2)replaces extra whitespaces between words with just 1 space 3)turns any uppercase character to lowercase
-        if (strcmp("start game",menu)==0 || strcmp("start",menu)==0 || strcmp("s",menu)==0 || strcmp("1",menu)==0) //setting different variations of the expected input
+        if (strcmp("start game",menu)==0 || strcmp("start",menu)==0 || strcmp("s",menu)==0 || strcmp("sg",menu)==0 || strcmp("1",menu)==0) //setting different variations of the expected input
         {
             option=1;
             system("cls");
@@ -32,7 +32,7 @@ void mainMenu(){
         }
         else if ( strcmp("exit",menu)==0 || strcmp("e",menu)==0 || strcmp("4",menu)==0 )
         {
-            break;
+            exit(0);
         }
         else
         {
@@ -56,9 +56,9 @@ void mainMenu(){
             {
                 system("cls");
                 while(1){
-                printf("Enter The Game Size (1 Digit) From 2 up to 9 [3*3 Dots up to 10*10 Dots]\nReturn\n");
+                printf("Enter The Game Size (1 Digit) From 2 up to 8 [3*3 Dots up to 9*9 Dots]\nReturn\n");
                 readLine(menu,100);
-                for(int i=2;i<=9;i++)
+                for(int i=2;i<=8;i++)
                 {
                     if(menu[0]-'0'==i)
                     {
@@ -113,7 +113,7 @@ void mainMenu(){
         //*********//
         if (option==2)
         {
-        loadTheGame();
+            loadTheGame();
         }
 
         //***********//
@@ -122,7 +122,7 @@ void mainMenu(){
 
         if (option==3)
         {
-
+            rankPrint();
         }
     }
 }

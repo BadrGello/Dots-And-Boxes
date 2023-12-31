@@ -11,13 +11,14 @@ void loadTheGame() {
     do{
             k++;
     do {
-        system("cls");
+         system("cls");
          if(k>1){
-                printf("there is no saving game in this saving slot\nDo you want to return to main menu?\n");
-               x=' ';
+                printf("There is no saved game in this saving slot\nDo you want to return to main menu?\n");
+                x=' ';
                 while(x!='y'&&x!='Y'&&x!='n'&&x!='N'){
-                printf("please enter(y/n):");
+                printf("Please Enter(y/n):");
                 scanf("%c", &x);
+                //getchar();
 
             }
             }
@@ -26,9 +27,9 @@ void loadTheGame() {
                 }
          system("cls");
         if ((saveSlot - '0' > 3 || saveSlot - '0' <= 0)&&saveSlot!='r'&&saveSlot!='R') {
-            printf("invalid value");
+            printf("Invalid Value\n");
         }
-        printf("choose save slot from 1 to 3(press r to return to main menu)\n");
+        printf("Choose save slot from 1 to 3 (press r to return to main menu)\n");
         scanf("%c", &saveSlot);
         getchar(); // consume the newline character
     } while ((saveSlot - '0' > 3 || saveSlot - '0' <= 0)&&saveSlot!='r'&&saveSlot!='R');
@@ -77,7 +78,7 @@ void loadTheGame() {
     fread(player1, sizeof(char), 256, fb);
     fread(player2, sizeof(char), 256, fb);
     fclose(fb);
-     system("cls");
+    system("cls");
     activeplayGround(gameSize,arr,player1,player2,dfsFlag,botFlag,playerTurn,p1Score,p2Score,player1moves,player2moves,z,savedTime);
 
 }

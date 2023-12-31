@@ -1,9 +1,9 @@
 #ifndef SAVE_H
 #define SAVE_H
 
-
 #include<stdio.h>
 #include<stdlib.h>
+
 void saveTheGame(int gameSize, char arr[2 * gameSize + 1][2 * gameSize + 1], int playerTurn, char player1[256], char player2[256], int p1Score, int p2Score, int player1Moves, int player2Moves, int z, int dfsFlag, int botFlag, int savedTime) {
     FILE *fb, *fb2;
     char saveSlot = '1', x;
@@ -14,11 +14,11 @@ void saveTheGame(int gameSize, char arr[2 * gameSize + 1][2 * gameSize + 1], int
         do {
             system("cls");
             if (k > 1) {
-                printf("there is a saved game in this slot Do you want to overwrite it?\n");
+                printf("There is a saved game in this slot. Do you want to overwrite it?\n");
                 x=' ';
                 while(x!='y'&&x!='Y'&&x!='n'&&x!='N'){
 
-                printf("please enter(y/n):");
+                printf("Please Enter (y/n):");
                 getchar();
                 scanf("%c", &x);
 
@@ -29,10 +29,10 @@ void saveTheGame(int gameSize, char arr[2 * gameSize + 1][2 * gameSize + 1], int
             }
              system("cls");
             if ((saveSlot - '0' > 3 || saveSlot - '0' <= 0)&&saveSlot!='r'&&saveSlot!='R') {
-                printf("Invalid value\n");
+                printf("Invalid Value\n");
             }
 
-            printf("Choose save slot from 1 to 3(press r to return to the game)\n");
+            printf("Choose save slot from 1 to 3 (press r to return to the game)\n");
             scanf(" %c", &saveSlot);
         } while ((saveSlot - '0' > 3 || saveSlot - '0' <= 0)&&saveSlot!='r'&&saveSlot!='R');
 

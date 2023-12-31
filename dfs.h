@@ -35,7 +35,6 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*score)++;
              Grid[r1+ r2-1][ c1+ c2-3]=Grid[r1+ r2-2][ c1+ c2-2]-1;
              Grid[r1+ r2-1][ c1+ c2-2]=Grid[r1+ r2-3][ c1+ c2-2];
-             ( r2)++;
              ////
              undoRedo(/*undoRedoCheck=*/0, gameSize, Grid, playerTurn, score, /* *p2Score=*/score, moves, /*player2Moves*/moves, z, r1+ r2-1,  c1+ c2-3, r1+ r2-1, c1+ c2-2, /*moveChecker=*/Grid[r1+ r2-1][ c1+ c2-3]-'0', /*winChecker1=*/Grid[r1+ r2-1][ c1+ c2-2]-'0', /*winChecker2=*/0, currentMove, lastMove, steps, botFlag, dfsActive=1);
              if( c1> c2)  openChain(gameSize,Grid,r1,c2,r2+1,c2,z,moves,score,  currentMove, lastMove, steps, botFlag, dfsActive, playerTurn);
@@ -48,9 +47,7 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*moves)++;
              (*score)++;
              Grid[r1+ r2-4][ c1+ c2-2]=Grid[r1+ r2-2][ c1+ c2-2];
-             Grid[r1+ r2-3][ c1+ c2-2]=Grid[r1+ r2-3][ c1+ c2-2];
-             (r1)--;
-             ( r2)--;
+             Grid[r1+ r2-3][ c1+ c2-2]=Grid[r1+ r2-1][ c1+ c2-2];
              ////
              undoRedo(/*undoRedoCheck=*/0, gameSize, Grid, playerTurn, score, /* *p2Score=*/score, moves, /*player2Moves*/moves, z, r1+ r2-4,  c1+ c2-2, r1+ r2-3, c1+ c2-2, /*moveChecker=*/Grid[r1+ r2-4][ c1+ c2-2]-'0', /*winChecker1=*/Grid[r1+ r2-3][ c1+ c2-2]-'0', /*winChecker2=*/0, currentMove, lastMove, steps, botFlag, dfsActive=1);
              openChain(gameSize,Grid,r1-1,c1,r2-1,c2,z,moves,score,  currentMove, lastMove, steps, botFlag, dfsActive, playerTurn);
@@ -60,7 +57,7 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*moves)++;
              (*score)++;
              Grid[r1+ r2-3][ c1+ c2-1]=Grid[r1+ r2-2][ c1+ c2-2]-1;
-             Grid[r1+ r2-3][ c1+ c2-2]=Grid[r1+ r2-3][ c1+ c2-2];
+             Grid[r1+ r2-3][ c1+ c2-2]=Grid[r1+ r2-1][ c1+ c2-2];
              ////
              undoRedo(/*undoRedoCheck=*/0, gameSize, Grid, playerTurn, score, /* *p2Score=*/score, moves, /*player2Moves*/moves, z, r1+ r2-3,  c1+ c2-1, r1+ r2-3, c1+ c2-2, /*moveChecker=*/Grid[r1+ r2-3][ c1+ c2-1]-'0', /*winChecker1=*/Grid[r1+ r2-3][ c1+ c2-2]-'0', /*winChecker2=*/0, currentMove, lastMove, steps, botFlag, dfsActive=1);
              if( c1> c2)   openChain(gameSize,Grid,r1,c1,r2-1,c1,z,moves,score,  currentMove, lastMove, steps, botFlag, dfsActive, playerTurn);
@@ -71,7 +68,7 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              (*moves)++;
              (*score)++;
              Grid[r1+ r2-3][ c1+ c2-3]=Grid[r1+ r2-2][ c1+ c2-2]-1;
-             Grid[r1+ r2-3][ c1+ c2-2]=Grid[r1+ r2-3][ c1+ c2-2];
+             Grid[r1+ r2-3][ c1+ c2-2]=Grid[r1+ r2-1][ c1+ c2-2];
              ////
              undoRedo(/*undoRedoCheck=*/0, gameSize, Grid, playerTurn, score, /* *p2Score=*/score, moves, /*player2Moves*/moves, z, r1+ r2-3,  c1+ c2-3, r1+ r2-3, c1+ c2-2, /*moveChecker=*/Grid[r1+ r2-3][ c1+ c2-3]-'0', /*winChecker1=*/Grid[r1+ r2-3][ c1+ c2-2]-'0', /*winChecker2=*/0, currentMove, lastMove, steps, botFlag, dfsActive=1);
              if( c1> c2)   openChain(gameSize,Grid,r1,c2,r2-1,c2,z,moves,score,  currentMove, lastMove, steps, botFlag, dfsActive, playerTurn);
@@ -80,7 +77,7 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
         }
     }
     else if( c1== c2){
-      if( c1!=1&& Grid[r1+ r2-2][ c1+ c2-1!=' ']){
+      if( c1!=1&& Grid[r1+ r2-2][ c1+ c2-1]!=' '){
             if(Grid[r1+ r2-2][ c1+ c2-4]==' '&&Grid[r1+ r2-1][ c1+ c2-3]!=' '&&Grid[r1+ r2-3][ c1+ c2-3]!=' '){
              (*z)--;
              (*moves)++;
@@ -115,7 +112,7 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
              else openChain(gameSize,Grid,r2,c1-1,r2,c2,z,moves,score,  currentMove, lastMove, steps, botFlag, dfsActive, playerTurn);
             }
       }
-      else if( c1!=gameSize+1&& Grid[r1+ r2-2][ c1+ c2-3!=' ']){
+      else if( c1!=gameSize+1&& Grid[r1+ r2-2][ c1+ c2-3]!=' '){
              if(Grid[r1+ r2-2][ c1+ c2]==' '&&Grid[r1+ r2-1][ c1+ c2-1]!=' '&&Grid[r1+ r2-3][ c1+ c2-1]!=' '){
              (*z)--;
              (*moves)++;
@@ -176,11 +173,11 @@ else if(r1==r2&&r1==gameSize+1) w=0;
 else if(c1==c2&&Grid[r1+r2-2][c1+c2-3]==' '&&c1!=1){
        Grid[r1+r2-2][c1+c2-3]='9';
        if(Grid[r1+r2-2][c1+c2-4]!=' ') z=1;
-       else x=dfs(gameSize,Grid,r1,c1-1,r2,c2-1);
-       if(Grid[r2+r2-2][c2+c2-3]!=' ') x=1;
-       else y=dfs(gameSize,Grid,r2,c1-1,r2,c2);
-       if(Grid[r1+r1-2][c1+c1-3]!=' ') w=1;
-       else z=dfs(gameSize,Grid,r1,c2-1,r1,c1);
+       else z=dfs(gameSize,Grid,r1,c1-1,r2,c2-1);
+       if(Grid[r2+r2-2][c2+c1-3]!=' ') {x=1; }
+       else x=dfs(gameSize,Grid,r2,c1-1,r2,c2);
+       if(Grid[r1+r1-2][c1+c2-3]!=' ') w=1;
+       else w=dfs(gameSize,Grid,r1,c2-1,r1,c1);
 }
 else if(c1==c2&&c1==1) z=0;
 else if(c1==c2&&Grid[r1+r2-2][c1+c2-1]==' '&&c1!=gameSize+1){
@@ -193,6 +190,7 @@ else if(c1==c2&&Grid[r1+r2-2][c1+c2-1]==' '&&c1!=gameSize+1){
        else w=dfs(gameSize,Grid,r1,c2+1,r1,c1);
 }
 else if(c1==c2&&c1==gameSize+1) y=0;
+else x=0;
 int r=(x*y*z*w);
 return r;
 }

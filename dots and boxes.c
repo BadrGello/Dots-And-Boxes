@@ -5,6 +5,7 @@
 #include <time.h>
 #include "dfs.h"
 #include "mainMenu.h"
+#include "rank.h"
 
 
 int main(){
