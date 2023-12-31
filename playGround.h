@@ -74,7 +74,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
             strcpy(p2Color,Green);
             break;
         }
-        if (strcmp(p2Color, "p")==0 || strcmp(p2Color, "3")==0 || strcmp(p2Color, "yellow")==0 ){
+        if (strcmp(p2Color, "y")==0 || strcmp(p2Color, "3")==0 || strcmp(p2Color, "yellow")==0 ){
             strcpy(p2Color,Yellow);
             break;
         }
@@ -305,7 +305,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 if (botFlag==0){
                 //Start: Scanning and handling in game options//
                 printf("Undo  Redo  Save  Exit\n");
-                printf(" %s%s's Turn : \033[0m",p1Color,player2);
+                printf(" %s%s's Turn : \033[0m",p2Color,player2);
                 int i=0;
                 for(i=0;i<4;i++)
                 {
@@ -432,25 +432,25 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 for(int j=0;j<gameSize*2 + 1;j++)
                     {
                         if ((Grid[i][j]==' ')||(Grid[i][j]=='.')) printf("%c ",Grid[i][j]);
-                        else if(Grid[i][j]=='2') printf("\033[0;34m|\033[0m ");
-                        else if(Grid[i][j]=='3') printf("\033[0;34m_\033[0m ");
-                        else if(Grid[i][j]=='6') printf("\033[0;34m#\033[0m ");
-                        else if(Grid[i][j]=='4') printf("\033[0;31m|\033[0m ");
-                        else if(Grid[i][j]=='5') printf("\033[0;31m_\033[0m ");
-                        else if(Grid[i][j]=='7') printf("\033[0;31m#\033[0m ");
+                        else if(Grid[i][j]=='2') printf("%s|\033[0m ",p1Color);
+                        else if(Grid[i][j]=='3') printf("%s_\033[0m ",p1Color);
+                        else if(Grid[i][j]=='6') printf("%s#\033[0m ",p1Color);
+                        else if(Grid[i][j]=='4') printf("%s|\033[0m ",p2Color);
+                        else if(Grid[i][j]=='5') printf("%s_\033[0m ",p2Color);
+                        else if(Grid[i][j]=='7') printf("%s#\033[0m ",p2Color);
                     }
                 printf("\n");
             }
             printf("\n");
         if(p1Score>p2Score)
         {
-            printf("\033[0;34m%s wins\033[0m \n",player1);
+            printf("%s%s wins\033[0m \n",p1Color,player1);
             rankWrite (player1, p1Score, player1Moves, gameSize);   //send player1Name, p1score, player1moves, gamesize to be written into the file AND display his rank after adding him to the list
 
         }
         else if(p2Score>p1Score)
         {
-            printf("\033[0;31m%s wins\033[0m \n",player2);
+            printf("%s%s wins\033[0m \n",p2Color,player2);
             rankWrite (player2, p2Score, player2Moves, gameSize);   //send player1Name, p1score, player1moves, gamesize to be written into the file AND display his rank after adding him to the list
         }
         else   printf("Draw\n");
