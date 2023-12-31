@@ -151,7 +151,7 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
 }
 int dfs(int gameSize,char Grid[2*gameSize+1][2*gameSize+1],int r1,int c1,int r2,int c2){ //dfs function
 int x=1,y=1,z=1,w=1;
-    if(r1==r2&&Grid[r1+r2-3][c1+c2-2]==' '&& r1!=1){//if the line drawn is horizontal and the box above it is empty and not equal to the first line
+    if(r1==r2&&Grid[r1+r2-3][c1+c2-2]==' '&& r1!=1){ //if the line drawn is horizontal and the box above it is empty and not equal to the first line
        Grid[r1+r2-3][c1+c2-2]='9';                   // make the box = visted
        if(Grid[r1+r2-4][c1+c2-2]!=' ') x=1;          //if the line above the box is not empty return x=1
        else x=dfs(gameSize,Grid,r1-1,c1,r2-1,c2);    // else x= the dfs of the line above the box
@@ -159,6 +159,7 @@ int x=1,y=1,z=1,w=1;
        else y=dfs(gameSize,Grid,r1,c2,r2-1,c2);      //else y= the dfs of the line next to the box
        if(Grid[r1+r2-3][c1+c1-2]!=' ') z=1;          //if the line next to the box in the other direction is not empty return z=1
        else z=dfs(gameSize,Grid,r1,c1,r2-1,c1);      //else z= the dfs of the line next to the box in the other direction
+    }
 else if(r1==r2&&r1==1) x=0;                          //else if line horizontal and equal to the first line x=0
 else if(r1==r2&&Grid[r1+r2-1][c1+c2-2]==' '&&r1!=gameSize+1){ //else if the line drawn is horizontal and the box under it is empty and not equal to the last line
        Grid[r1+r2-1][c1+c2-2]='9';                            // make the box = visted
