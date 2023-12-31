@@ -1,7 +1,6 @@
 #ifndef PLAYGROUND_H
 #define PLAYGROUND_H
 
-
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -10,7 +9,9 @@
 #include "undoRedo.h"
 #include"readLine.h"
 #include"mainMenu.h"
-#define size 256
+#include "rank.h"
+
+//#define size 256
 void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1] ,char player1[256],char player2[256], int dfsFlag, int botFlag,int playerTurn,int p1Score,int p2Score,int player1Moves,int player2Moves,int z,int savedTime );
 void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, if = 1, it's enabled
 {
@@ -27,12 +28,12 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
     int p1Score=0,p2Score=0,z=2*gameSize*(gameSize+1),player1Moves=0,player2Moves=0; //z is the remaining moves
     int playerTurn=1;
     char player1[256],player2[256]; //holds the players names
-    printf("\033[0;34mPlayer1, enter your name:\033[0m "); //player 1 is blue
+    printf("\033[0;34mPlayer1, Enter your name:\033[0m "); //player 1 is blue
     readLine(player1,256);
     system("cls");
     if(botFlag==1){strcpy(player2, "Computer");} //if not bot, it'll scanf for player 2 name instead
     else{
-    printf("\033[0;31mPlayer2, enter your name:\033[0m "); //player 2 is red
+    printf("\033[0;31mPlayer2, Enter your name:\033[0m "); //player 2 is red
     readLine(player2,256);
     system("cls");}
     int savedTime=0;
@@ -163,7 +164,10 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 else if (strcmp("exit",b)==0)
                 {
-                    exit(EXIT_SUCCESS);
+                    //getchar();
+                    system("cls");
+                    mainMenu();
+                    //exit(EXIT_SUCCESS);
                     //EXIT=1;
                     //break;
                 }
@@ -277,7 +281,10 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 else if (strcmp("exit",b)==0)
                 {
-                    exit(EXIT_SUCCESS);
+                    //getchar();
+                    system("cls");
+                    mainMenu();
+                    //exit(EXIT_SUCCESS);
                     //EXIT=1;
                     //break;
                 }
@@ -382,19 +389,29 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 printf("\n");
             }
             printf("\n");
-        if(p1Score>p2Score) printf("\033[0;34m%s wins\033[0m \n",player1);
-        else if(p2Score>p1Score) printf("\033[0;31m%s wins\033[0m \n",player2);
-        else   printf("Draw\n");
-        char answer[4];
-        while(strcmp(answer,"yes")!=0&&strcmp(answer,"Yes")!=0&&strcmp(answer,"no")!=0&&strcmp(answer,"No")!=0){
-        printf("Do you want to go to main menu?\n");
-        scanf("%s",answer);
-        if(strcmp(answer,"yes")==0||strcmp(answer,"Yes")==0) mainMenu();
-        else if(strcmp(answer,"no")==0||strcmp(answer,"No")==0) exit(0);
-        system("cls");
-        printf("please enter (y/n)\n");
+        if(p1Score>p2Score)
+        {
+            printf("\033[0;34m%s wins\033[0m \n",player1);
+            rankWrite (player1, p1Score, player1Moves, gameSize);   //send player1Name, p1score, player1moves, gamesize to be written into the file AND display his rank after adding him to the list
 
-}
+        }
+        else if(p2Score>p1Score)
+        {
+            printf("\033[0;31m%s wins\033[0m \n",player2);
+            rankWrite (player2, p2Score, player2Moves, gameSize);   //send player1Name, p1score, player1moves, gamesize to be written into the file AND display his rank after adding him to the list
+        }
+        else   printf("Draw\n");
+
+        char answer[4];
+        while(1)//strcmp(answer,"yes")!=0 && strcmp(answer,"Yes")!=0 && strcmp(answer,"no")!=0 && strcmp(answer,"No")!=0)
+        {
+            printf("Do you want to go to main menu (yes/no)?\n");
+            scanf("%s",answer);
+            if (strcmp(answer,"yes")==0 || strcmp(answer,"Yes")==0 || strcmp(answer,"Y")==0 || strcmp(answer,"y")==0) {getchar(); system("cls"); mainMenu();}
+            else if (strcmp(answer,"no")==0||strcmp(answer,"No")==0  || strcmp(answer,"N")==0 || strcmp(answer,"n")==0) exit(0);
+            system("cls");
+            //printf("Please enter (y/n)\n");
+        }
 }
 
 
