@@ -28,6 +28,25 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
     int p1Score=0,p2Score=0,z=2*gameSize*(gameSize+1),player1Moves=0,player2Moves=0; //z is the remaining moves
     int playerTurn=1;
     char player1[256],player2[256]; //holds the players names
+    char p1Color[20],p2Color[20]; //holds player's colors
+    while (1)
+    {
+        printf("Player 1, Choose Your Color: 1 2 3 4\n");
+        readLine(p1Color,20);
+        if (strcmp(p1Color, "red")==0 || strcmp(p1Color, "")==0 || strcmp(p1Color, "")==0 || strcmp(p1Color, "")==0) break;
+        else {system("cls"); printf("Invaled Value\n");}
+
+    }
+    system("cls");
+    while (1)
+    {
+        printf("Player 2, Choose Your Color: 5 6 7 8\n");
+        readLine(p2Color,20);
+        if (strcmp(p1Color, "blue")==0 || strcmp(p1Color, "")==0 || strcmp(p1Color, "")==0 || strcmp(p1Color, "")==0) break;
+        else {system("cls"); printf("Invaled Value\n");}
+    }
+    system("cls");
+
     printf("\033[0;34mPlayer1, Enter your name:\033[0m "); //player 1 is blue
     readLine(player1,256);
     system("cls");
