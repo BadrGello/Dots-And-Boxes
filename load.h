@@ -5,17 +5,17 @@
 #include <stdlib.h>
 #include<string.h>
 void loadTheGame() {
-    FILE *fb;
+    FILE *fb; //make file pointer
     char saveSlot = '1';
     int k=0;
     do{
             k++;
     do {
          system("cls");
-         if(k>1){
+         if(k>1){ //if k>1 that means that the function looped one time at least
                 printf("There is no saved game in this saving slot please try again\n");
             }
-                if (saveSlot=='r'||saveSlot=='R') {
+                if (saveSlot=='r'||saveSlot=='R') { //thats mean the user wnt to return to main menu
                     break;
                 }
         if ((saveSlot - '0' > 3 || saveSlot - '0' <= 0)&&saveSlot!='r'&&saveSlot!='R') {
@@ -27,20 +27,20 @@ void loadTheGame() {
     } while ((saveSlot - '0' > 3 || saveSlot - '0' <= 0)&&saveSlot!='r'&&saveSlot!='R');
 
     if (saveSlot == '1') {
-        fb = fopen("saveSlot1.bin", "rb");
+        fb = fopen("saveSlot1.bin", "rb");  //open the file named saveSlot1.bin
     } else if (saveSlot == '2') {
-        fb = fopen("saveSlot2.bin", "rb");
+        fb = fopen("saveSlot2.bin", "rb"); //open the file named saveSlot2.bin
     } else if (saveSlot == '3') {
-        fb = fopen("saveSlot3.bin", "rb");
+        fb = fopen("saveSlot3.bin", "rb"); //open the file named saveSlot3.bin
     }
     if (saveSlot=='r'||saveSlot=='R'){
             break;
     }
     }
-    while(fb==NULL);
+    while(fb==NULL); //if fb = NULL thats mean there is no file in the choosen save slot
     if(saveSlot!='r'&&saveSlot!='R'){
     char *pb,numericalGameData[100];
-    fread(numericalGameData,sizeof(char),100,fb);
+    fread(numericalGameData,sizeof(char),100,fb); //returning all numerical data in string then seprate them all in its place
     pb=strtok(numericalGameData,",");
     int gameSize=pb[0]-'0';
     pb=strtok(NULL,",");
