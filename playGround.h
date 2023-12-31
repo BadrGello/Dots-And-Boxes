@@ -139,10 +139,10 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
             //printing the time
             printf("Time Spent %d:%d\n",t,time_spent);
             //printing the score and the moves
-            printf(" %s%s's Score :%d\033[0m           ",p1Color,player1,p1Score);
-            printf(" %s%s's Score :%d\033[0m \n",p2Color,player2,p2Score);
-            printf(" %s%s Played :%d Moves\033[0m      ",p1Color,player1,player1Moves);
-            printf(" %s%s Played :%d Moves\033[0m \n",p2Color,player2,player2Moves);
+            printf(" %s%s's Score : %d\033[0m           ",p1Color,player1,p1Score);
+            printf(" %s%s's Score : %d\033[0m \n",p2Color,player2,p2Score);
+            printf(" %s%s Played : %d Moves\033[0m      ",p1Color,player1,player1Moves);
+            printf(" %s%s Played : %d Moves\033[0m \n",p2Color,player2,player2Moves);
             printf("Remaining Moves:%d\n",z);
             int l=p1Score,t=p2Score;
             //Printing The Grid
@@ -229,12 +229,12 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 if (EXIT==1) break;
                 if ((c2==c1)&&(abs(r1-r2)==1)&&(Grid[r1+r2-2][c1+c2-2]==' '&& r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)){
                     player1Moves++;
-                    Grid[r1+r2-2][c1+c2-2]='2'; // |
+                    Grid[r1+r2-2][c1+c2-2]='2'; // 2 means player's 1 '|'
                     moveChecker=2; //UndoRedo
 
                     if(c1!=1){
                     if(Grid[r1+r2-2][c1+c2-4]!=' ' && Grid[r1+r2-3][c1+c2-3]!=' ' && Grid[r1+r2-1][c1+c2-3]!=' ') {
-                    Grid[r1+r2-2][c1+c2-3]='6'; // #
+                    Grid[r1+r2-2][c1+c2-3]='6'; // 6 means player's 1 '#'
                     p1Score++;
                     winChecker1=60; //UndoRedo
                     /////////////////
@@ -243,7 +243,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
 
                     if(c1!=gameSize+1){
                     if (Grid[r1+r2-2][c1+c2]!=' '&& Grid[r1+r2-3][c1+c2-1]!=' ' && Grid[r1+r2-1][c1+c2-1]!=' ') {
-                    Grid[r1+r2-2][c1+c2-1]='6'; // #
+                    Grid[r1+r2-2][c1+c2-1]='6'; // 6 means player's 1 '#'
                     p1Score++;
                     winChecker2=61; //UndoRedo
                     /////////////////
@@ -252,12 +252,12 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 else if ((r2==r1)&&(abs(c1-c2)==1)&&(Grid[r1+r2-2][c1+c2-2]==' ' && r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)){
                      player1Moves++;
-                     Grid[r1+r2-2][c1+c2-2]='3'; // -
+                     Grid[r1+r2-2][c1+c2-2]='3'; // 3 means player's 1 '_'
                      moveChecker=3; //UndoRedo
 
                      if(r1!=gameSize+1){
                      if(Grid[r1+r2][c1+c2-2]!=' '  && Grid[r1+r2-1][c1+c2-1]!=' ' &&Grid[r1+r2-1][c1+c2-3]!=' '  ){
-                     Grid[r1+r2-1][c1+c2-2]='6';
+                     Grid[r1+r2-1][c1+c2-2]='6'; // 6 means player's 1 '#'
                      p1Score++;
                      winChecker1=62; //UndoRedo
                      }
@@ -265,7 +265,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
 
                      if(r1!=1){
                      if(Grid[r1+r2-4][c1+c2-2]!=' ' && Grid[r1+r2-3][c1+c2-1]!=' ' &&Grid[r1+r2-3][c1+c2-3]!=' '  ){
-                     Grid[r1+r2-3][c1+c2-2]='6';
+                     Grid[r1+r2-3][c1+c2-2]='6'; // 6 means player's 1 '#'
                      p1Score++;
                      winChecker2=63; //UndoRedo
                      }
@@ -344,16 +344,16 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 //End: Scanning and handling in game options//
 
-                else generateRandomNumber(1,gameSize+1,&r1,&c1,&r2,&c2);
+                else generateRandomNumber(gameSize,Grid,&r1,&c1,&r2,&c2);
                 if (EXIT==1) break;
                 if ((c2==c1)&&(abs(r1-r2)==1)&&(Grid[r1+r2-2][c1+c2-2]==' ' && r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)) {
                     player2Moves++;
-                    Grid[r1+r2-2][c1+c2-2]='4';
+                    Grid[r1+r2-2][c1+c2-2]='4'; // 4 means player's 2 '|'
                     moveChecker=4; //UndoRedo
 
                     if( c1!=1 ){
                     if(Grid[r1+r2-2][c1+c2-4]!=' '&& Grid[r1+r2-3][c1+c2-3]!=' ' && Grid[r1+r2-1][c1+c2-3]!=' ') {
-                    Grid[r1+r2-2][c1+c2-3]='7'; // #
+                    Grid[r1+r2-2][c1+c2-3]='7'; // 7 means player's 2 '#'
                     p2Score++;
                     winChecker1=70; //UndoRedo
                     }
@@ -361,7 +361,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
 
                     if(c1!=gameSize+1 ){
                     if (Grid[r1+r2-2][c1+c2]!=' '&&  Grid[r1+r2-3][c1+c2-1]!=' ' && Grid[r1+r2-1][c1+c2-1]!=' ') {
-                    Grid[r1+r2-2][c1+c2-1]='7'; // #
+                    Grid[r1+r2-2][c1+c2-1]='7'; // 7 means player's 2 '#'
                     p2Score++;
                     winChecker2=71; //UndoRedo
                     }
@@ -371,12 +371,12 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 else if ((r2==r1)&&(abs(c1-c2)==1)&&(Grid[r1+r2-2][c1+c2-2]==' ' && r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)){
                     player2Moves++;
-                    Grid[r1+r2-2][c1+c2-2]='5';
+                    Grid[r1+r2-2][c1+c2-2]='5'; // 5 means player's 2 '_'
                     moveChecker=5; //UndoRedo
 
                     if( r1!=gameSize+1 ){
                     if(Grid[r1+r2][c1+c2-2]!=' '&&Grid[r1+r2-1][c1+c2-1]!=' ' &&Grid[r1+r2-1][c1+c2-3]!=' '  ){
-                    Grid[r1+r2-1][c1+c2-2]='7';
+                    Grid[r1+r2-1][c1+c2-2]='7'; // 7 means player's 2 '#'
                     p2Score++;
                     winChecker1=72; //UndoRedo
                     }
@@ -384,7 +384,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
 
                     if(r1!=1 ){
                     if(Grid[r1+r2-4][c1+c2-2]!=' ' &&  Grid[r1+r2-3][c1+c2-1]!=' ' &&Grid[r1+r2-3][c1+c2-3]!=' '  ){
-                    Grid[r1+r2-3][c1+c2-2]='7';
+                    Grid[r1+r2-3][c1+c2-2]='7'; // 7 means player's 2 '#'
                     p2Score++;
                     winChecker2=73; //UndoRedo
                     }
