@@ -55,7 +55,7 @@ void saveTheGame(int gameSize, char arr[2 * gameSize + 1][2 * gameSize + 1], int
     sprintf(numericalGameData, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d.",
             gameSize, playerTurn, dfsFlag, botFlag, savedTime, p1Score, p2Score, player1Moves, player2Moves, z); //get all numerical data in one string
     fwrite(numericalGameData, sizeof(char), 100, fb); //write it in the file
-
+ //write the all grid in the file
     for (int i = 0; i <= 2 * gameSize; i++) {
         fwrite(arr[i], sizeof(char), 2 * gameSize + 1, fb);
     }

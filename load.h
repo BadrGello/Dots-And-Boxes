@@ -63,6 +63,7 @@ void loadTheGame() {
     int z=atoi(pb);
     char arr[2 * gameSize + 1][2 * gameSize + 1];
     int i,j;
+    //get all the grid from the file
     for (i = 0; i <= 2 * gameSize; i++) {
         fread(arr[i], sizeof(char), 2 * gameSize + 1, fb);
     }
