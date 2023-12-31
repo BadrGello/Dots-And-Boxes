@@ -7,8 +7,8 @@
 #include "botRandom.h"
 #include "save.h"
 #include "undoRedo.h"
-#include"readLine.h"
-#include"mainMenu.h"
+#include "readLine.h"
+#include "mainMenu.h"
 #include "rank.h"
 
 //#define size 256
@@ -42,7 +42,7 @@ void playGround(int gameSize, int dfsFlag, int botFlag) //dfs and bot markers, i
     {
         printf("Player 2, Choose Your Color: 5 6 7 8\n");
         readLine(p2Color,20);
-        if (strcmp(p1Color, "blue")==0 || strcmp(p1Color, "")==0 || strcmp(p1Color, "")==0 || strcmp(p1Color, "")==0) break;
+        if (strcmp(p2Color, "blue")==0 || strcmp(p2Color, "")==0 || strcmp(p2Color, "")==0 || strcmp(p2Color, "")==0) break;
         else {system("cls"); printf("Invaled Value\n");}
     }
     system("cls");
