@@ -190,6 +190,7 @@ else if(c1==c2&&Grid[r1+r2-2][c1+c2-1]==' '&&c1!=gameSize+1){
        else w=dfs(gameSize,Grid,r1,c2+1,r1,c1);
 }
 else if(c1==c2&&c1==gameSize+1) y=0;
+else x=0;
 int r=(x*y*z*w);
 return r;
 }
