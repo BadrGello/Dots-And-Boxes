@@ -154,7 +154,7 @@ void rankPrint()
     FILE *file = fopen(FILENAME, "r");
 
     int numUsers = 0;
-    rankStruct Rank[numUsers];
+    rankStruct Rank[MAX_USERS];
     while (fscanf(file, "%s %d %d %d\n", Rank[numUsers].playerName, &Rank[numUsers].score, &Rank[numUsers].moves, &Rank[numUsers].gameSize) == 4)
     {
         numUsers++;
