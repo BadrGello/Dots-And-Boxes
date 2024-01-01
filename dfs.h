@@ -6,6 +6,7 @@
 //  currentMove, lastMove, steps[], botFlag, dfsActive, playerTurn
 
 void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,int r2,int c2,int* z,int* moves,int* score,     int *currentMove, int *lastMove, stepInfoStruct steps[], int botFlag, int dfsActive,    int *playerTurn){
+  //if the line close a box and make the other box have 3 side filled close the another box and try again
     if(r1== r2){
         if(r1!=gameSize+1 && Grid[r1+ r2-3][ c1+ c2-2]!=' '){
             if(Grid[r1+ r2][ c1+ c2-2]==' '&&Grid[r1+ r2-1][ c1+ c2-1]!=' '&&Grid[r1+ r2-1][ c1+ c2-3]!=' '){
@@ -148,57 +149,57 @@ void openChain(int gameSize,char Grid[gameSize*2+1][gameSize*2+1],int r1,int c1,
       }
     }
 }
-int dfs(int gameSize,char Grid[2*gameSize+1][2*gameSize+1],int r1,int c1,int r2,int c2){
+int dfs(int gameSize,char Grid[2*gameSize+1][2*gameSize+1],int r1,int c1,int r2,int c2){ //dfs function
 int x=1,y=1,z=1,w=1;
-    if(r1==r2&&Grid[r1+r2-3][c1+c2-2]==' '&& r1!=1){
-       Grid[r1+r2-3][c1+c2-2]='9';
-       if(Grid[r1+r2-4][c1+c2-2]!=' ') x=1;
-       else x=dfs(gameSize,Grid,r1-1,c1,r2-1,c2);
-       if(Grid[r1+r2-3][c2+c2-2]!=' ') y=1;
-       else y=dfs(gameSize,Grid,r1,c2,r2-1,c2);
-       if(Grid[r1+r2-3][c1+c1-2]!=' ') z=1;
-       else z=dfs(gameSize,Grid,r1,c1,r2-1,c1);
+    if(r1==r2&&Grid[r1+r2-3][c1+c2-2]==' '&& r1!=1){ //if the line drawn is horizontal and the box above it is empty and not equal to the first line
+       Grid[r1+r2-3][c1+c2-2]='9';                   // make the box = visted
+       if(Grid[r1+r2-4][c1+c2-2]!=' ') x=1;          //if the line above the box is not empty return x=1
+       else x=dfs(gameSize,Grid,r1-1,c1,r2-1,c2);    // else x= the dfs of the line above the box
+       if(Grid[r1+r2-3][c2+c2-2]!=' ') y=1;          //if the line next to the box is not empty return y=1
+       else y=dfs(gameSize,Grid,r1,c2,r2-1,c2);      //else y= the dfs of the line next to the box
+       if(Grid[r1+r2-3][c1+c1-2]!=' ') z=1;          //if the line next to the box in the other direction is not empty return z=1
+       else z=dfs(gameSize,Grid,r1,c1,r2-1,c1);      //else z= the dfs of the line next to the box in the other direction
+    }
+else if(r1==r2&&r1==1) x=0;                          //else if line horizontal and equal to the first line x=0
+else if(r1==r2&&Grid[r1+r2-1][c1+c2-2]==' '&&r1!=gameSize+1){ //else if the line drawn is horizontal and the box under it is empty and not equal to the last line
+       Grid[r1+r2-1][c1+c2-2]='9';                            // make the box = visted
+       if(Grid[r1+r2][c1+c2-2]!=' ') w=1;                     //if the line under the box is not empty return w=1
+       else w=dfs(gameSize,Grid,r1+1,c1,r2+1,c2);             // else w= the dfs of the line above the box
+       if(Grid[r1+r2-1][c2+c2-2]!=' ') y=1;                   //if the line next to the box is not empty return y=1
+       else y=dfs(gameSize,Grid,r1,c2,r2+1,c2);              //else y= the dfs of the line next to the box
+       if(Grid[r1+r2-1][c1+c1-2]!=' ') z=1;                  //if the line next to the box in the other direction is not empty return z=1
+       else z=dfs(gameSize,Grid,r1,c1,r2+1,c1);              //else z= the dfs of the line next to the box in the other direction
 }
-else if(r1==r2&&r1==1) x=0;
-else if(r1==r2&&Grid[r1+r2-1][c1+c2-2]==' '&&r1!=gameSize+1){
-       Grid[r1+r2-1][c1+c2-2]='9';
-       if(Grid[r1+r2][c1+c2-2]!=' ') w=1;
-       else w=dfs(gameSize,Grid,r1+1,c1,r2+1,c2);
-       if(Grid[r1+r2-1][c2+c2-2]!=' ') y=1;
-       else y=dfs(gameSize,Grid,r1,c2,r2+1,c2);
-       if(Grid[r1+r2-1][c1+c1-2]!=' ') z=1;
-       else z=dfs(gameSize,Grid,r1,c1,r2+1,c1);
+else if(r1==r2&&r1==gameSize+1) w=0;                         //else if line horizontal and equal to the last line w=0
+else if(c1==c2&&Grid[r1+r2-2][c1+c2-3]==' '&&c1!=1){         //else if line is vertical and the box left to it is empty and the line not equal to the first line
+       Grid[r1+r2-2][c1+c2-3]='9';                           //the box =visted
+       if(Grid[r1+r2-2][c1+c2-4]!=' ') z=1;                  //if the line in the left of the box is not empty z=1
+       else z=dfs(gameSize,Grid,r1,c1-1,r2,c2-1);            //else z=dfs of the line in the left of the box
+       if(Grid[r2+r2-2][c2+c1-3]!=' ') {x=1; }               //if the line above the box is not empty return x=1
+       else x=dfs(gameSize,Grid,r2,c1-1,r2,c2);              // else x= the dfs of the line above the box
+       if(Grid[r1+r1-2][c1+c2-3]!=' ') w=1;                  //if the line under the box is not empty return w=1
+       else w=dfs(gameSize,Grid,r1,c2-1,r1,c1);              // else w= the dfs of the line above the box
 }
-else if(r1==r2&&r1==gameSize+1) w=0;
-else if(c1==c2&&Grid[r1+r2-2][c1+c2-3]==' '&&c1!=1){
-       Grid[r1+r2-2][c1+c2-3]='9';
-       if(Grid[r1+r2-2][c1+c2-4]!=' ') z=1;
-       else z=dfs(gameSize,Grid,r1,c1-1,r2,c2-1);
-       if(Grid[r2+r2-2][c2+c1-3]!=' ') {x=1; }
-       else x=dfs(gameSize,Grid,r2,c1-1,r2,c2);
-       if(Grid[r1+r1-2][c1+c2-3]!=' ') w=1;
-       else w=dfs(gameSize,Grid,r1,c2-1,r1,c1);
+else if(c1==c2&&c1==1) z=0;                                         //else if line is vertical and the line = the first line z=0
+else if(c1==c2&&Grid[r1+r2-2][c1+c2-1]==' '&&c1!=gameSize+1){       //else if line is vertical and the box right to it is empty and the line not equal to the first line
+       Grid[r1+r2-2][c1+c2-1]='9';                                  //the box =visted
+       if(Grid[r1+r2-2][c1+c2]!=' ') y=1;                           //if the line in the right of the box is not empty y=1
+       else y=dfs(gameSize,Grid,r1,c1+1,r2,c2+1);                   //else y=dfs of the line in the right of the box
+       if(Grid[r2+r2-2][c2+c1-1]!=' ') x=1;                          //if the line above the box is not empty return x=1
+       else x=dfs(gameSize,Grid,r2,c1+1,r2,c2);                     // else x= the dfs of the line above the box
+       if(Grid[r1+r1-2][c1+c2-1]!=' ') w=1;                         //if the line under the box is not empty return w=1
+       else w=dfs(gameSize,Grid,r1,c2+1,r1,c1);                     // else w= the dfs of the line above the box
 }
-else if(c1==c2&&c1==1) z=0;
-else if(c1==c2&&Grid[r1+r2-2][c1+c2-1]==' '&&c1!=gameSize+1){
-       Grid[r1+r2-2][c1+c2-1]='9';
-       if(Grid[r1+r2-2][c1+c2]!=' ') y=1;
-       else y=dfs(gameSize,Grid,r1,c1+1,r2,c2+1);
-       if(Grid[r2+r2-2][c2+c1-1]!=' ') x=1;
-       else x=dfs(gameSize,Grid,r2,c1+1,r2,c2);
-       if(Grid[r1+r1-2][c1+c2-1]!=' ') w=1;
-       else w=dfs(gameSize,Grid,r1,c2+1,r1,c1);
-}
-else if(c1==c2&&c1==gameSize+1) y=0;
-else x=0;
-int r=(x*y*z*w);
+else if(c1==c2&&c1==gameSize+1) y=0;                                //else if line is vertical and the line = the last line y=0
+else x=0;                                                           // else (the box infront of you is visted before) x=0(any variable to make return =0)
+int r=(x*y*z*w);                                                    // r=multiplicaton of all variables(if any return =0 r=0 else r=1) and returning r
 return r;
 }
 
 
 void chainOfBoxes(int gameSize,char Grid[2*gameSize+1][2*gameSize+1],int r1,int c1,int r2,int c2,int* z,int* moves,int* score,     int *currentMove, int *lastMove, stepInfoStruct steps[], int botFlag, int dfsActive,    int *playerTurn){
     int i,j;
-if(dfs(gameSize,Grid,r1,c1,r2,c2)){
+if(dfs(gameSize,Grid,r1,c1,r2,c2)){ //if the dfs return =1 make all the boxes visted by the color of player who played this play and fill al line around it
     for(i=0;i<=2*gameSize;i++){
         for(j=0;j<=2*gameSize;j++){
             if(Grid[i][j]=='9'){
@@ -277,7 +278,7 @@ if(dfs(gameSize,Grid,r1,c1,r2,c2)){
     }
 
 }
-else{
+else{      // if dfs return =0 return all visted boxes to its deafult
         for(i=0;i<=2*gameSize;i++){
         for(j=0;j<=2*gameSize;j++){
             if(Grid[i][j]=='9'){
@@ -286,7 +287,7 @@ else{
         }
     }
 
-openChain(gameSize,Grid,r1,c1,r2,c2,z,moves,score,  currentMove, lastMove, steps, botFlag, dfsActive, playerTurn);
+openChain(gameSize,Grid,r1,c1,r2,c2,z,moves,score,  currentMove, lastMove, steps, botFlag, dfsActive, playerTurn); //try open chain
 }
 }
 
