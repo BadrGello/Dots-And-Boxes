@@ -344,7 +344,7 @@ void activeplayGround( int gameSize,char Grid[gameSize*2 + 1][gameSize*2 + 1],ch
                 }
                 //End: Scanning and handling in game options//
 
-                else generateRandomNumber(1,gameSize+1,&r1,&c1,&r2,&c2);
+                else generateRandomNumber(gameSize,Grid,&r1,&c1,&r2,&c2);
                 if (EXIT==1) break;
                 if ((c2==c1)&&(abs(r1-r2)==1)&&(Grid[r1+r2-2][c1+c2-2]==' ' && r1<=gameSize+1&&r2<=gameSize+1&&c1<=gameSize+1&&c2<=gameSize+1)) {
                     player2Moves++;
